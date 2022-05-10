@@ -7,13 +7,12 @@ public class Spawner : MonoBehaviour
     public Transform playerPos;
     public float xSpawnOffset;
     public float zSpawnOffset;
-    public float timeBtwnSpawns;
+    public float distBtwnSpawns;
     public GameObject mound1;
     public GameObject ramp;
     public GameObject boost;
 
-    float spawnTimer;
-
+    float lastSpawnPos;
 
     // Start is called before the first frame update
     void Start()
@@ -22,15 +21,13 @@ public class Spawner : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if(spawnTimer < 0)
+        if(playerPos.position.z > lastSpawnPos + distBtwnSpawns)
         {
-            spawnTimer = timeBtwnSpawns;
+            lastSpawnPos = playerPos.position.z;
             Spawn();
         }
-
-        spawnTimer -= Time.deltaTime;
     }
 
     void Spawn()
@@ -39,7 +36,7 @@ public class Spawner : MonoBehaviour
         float random = Random.Range(0, 100);
         if(random > 5)
         {
-            Instantiate(mound1, spawnPos, Quaternion.Euler(new Vector3(-90, Random.Range(0, 360), 0)));
+            Instantiate(mound1, spawnPos, Quaternion.Euler(new Vector3(0, 0, 0)));
         }
         else if(random > 2)
         {

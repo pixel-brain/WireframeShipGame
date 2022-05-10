@@ -1,12 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PlayerMove : MonoBehaviour
 {
     [Header("Move Variables")]
     [Range(0f, 110f)]
     public float forwardSpeed;
+    [Range(0f, 500f)]
+    public float maxForwardSpeed;
+    [Range(0f, 3f)]
+    public float forwardDecelSpeed;
+    [Range(0f, 3f)]
+    public float forwardAccelSpeed;
     [Range(0f, 8f)]
     public float accelSpeed;
     [Range(0f, 40f)]
@@ -22,17 +30,28 @@ public class PlayerMove : MonoBehaviour
     public float rampLaunchSpeed;
 
     [Header("Boost Variables")]
-    [Range(0f, 150f)]
-    public float boostSpeed;
+    [Range(0f, 30f)]
+    public float boostStartAccel;
+    [Range(0f, 8f)]
     public float boostTime;
-    public float boostDecelSpeed;
+
+    [Header("NearMiss Variables")]
+    [Range(0f, 30f)]
+    public float nearMissStartAccel;
+    [Range(0f, 5f)]
+    public float nearMissBoostTime;
 
     [Header("References")]
     public Transform model;
+    public TextMeshProUGUI speedGuageText;
+    public ParticleSystem boostParticles;
+
 
     int moveInput;
-    float boostTimer;
-    Rigidbody rigi;
+    [HideInInspector]
+    public float boostTimer;
+    [HideInInspector]
+    public Rigidbody rigi;
     // Start is called before the first frame update
     void Start()
     {
@@ -95,13 +114,15 @@ public class PlayerMove : MonoBehaviour
         float zVel = rigi.velocity.z;
         if(boostTimer > 0)
         {
-            zVel = boostSpeed;
+            zVel = Mathf.Clamp(zVel + forwardAccelSpeed, forwardSpeed, maxForwardSpeed);
+            boostParticles.Play();
         }
         else
         {
-            zVel = Mathf.Clamp(rigi.velocity.z - boostDecelSpeed, forwardSpeed, boostSpeed);
+            zVel = Mathf.Clamp(zVel - forwardDecelSpeed, forwardSpeed, maxForwardSpeed);
+            boostParticles.Stop();
         }
-        Debug.Log(zVel);
+        speedGuageText.text = "" + Mathf.Round(zVel);
         //apply velocity
         rigi.velocity = new Vector3(xVel, rigi.velocity.y, zVel);
     }
@@ -114,8 +135,42 @@ public class PlayerMove : MonoBehaviour
         }
         else if(other.transform.tag == "Boost")
         {
-            boostTimer = boostTime;
+            //Set Boost Time
+            if(boostTimer < 0)
+            {
+                boostTimer = boostTime;
+            }
+            else
+            {
+                boostTimer += boostTime;
+            }
+            rigi.velocity = new Vector3(rigi.velocity.x, rigi.velocity.y, rigi.velocity.z + boostStartAccel);
             Destroy(other.gameObject);
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.transform.tag == "NearMiss")
+        {
+            //Set NearMiss Boost Time
+            if (boostTimer < 0)
+            {
+                boostTimer = nearMissBoostTime;
+            }
+            else
+            {
+                boostTimer += nearMissBoostTime;
+            }
+            rigi.velocity = new Vector3(rigi.velocity.x, rigi.velocity.y, rigi.velocity.z + nearMissStartAccel);
+        }
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+        if(other.transform.tag == "Obstacle")
+        {
+            SceneManager.LoadScene("SampleScene");
         }
     }
 }
