@@ -34,11 +34,11 @@ public class Spawner : MonoBehaviour
     {
         Vector3 spawnPos = new Vector3(playerPos.position.x + Random.Range(-xSpawnOffset, xSpawnOffset), 0, playerPos.position.z + zSpawnOffset);
         float random = Random.Range(0, 100);
-        if(random > 5)
+        if(random > 8)
         {
             Instantiate(mound1, spawnPos, Quaternion.Euler(new Vector3(0, 0, 0)));
         }
-        else if(random > 2)
+        else if(random > 4)
         {
             Instantiate(boost, spawnPos, Quaternion.Euler(new Vector3(45, 45, 0)));
         }

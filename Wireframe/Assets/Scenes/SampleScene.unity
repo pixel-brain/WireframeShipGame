@@ -325,7 +325,7 @@ MonoBehaviour:
   zSpawnOffset: 255
   distBtwnSpawns: 8
   mound1: {fileID: 1258385788842576368, guid: b52876befaf479d4b9cc0ec414a0067b, type: 3}
-  ramp: {fileID: 4416654524301213490, guid: 29daaa50da256b349889cb55ebef9d3d, type: 3}
+  ramp: {fileID: 7335802876926218619, guid: 29daaa50da256b349889cb55ebef9d3d, type: 3}
   boost: {fileID: 5923382382892149929, guid: 6846b3c69bcf5134abf0e0ec6617eed6, type: 3}
 --- !u!4 &141953921
 Transform:
@@ -6682,20 +6682,121 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29149bf51e8f4b043b8aaecd0a2012c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  accelScaling:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.030872166
+      value: 1.0002143
+      inSlope: -0.00010356126
+      outSlope: -0.00010356126
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.4222375
+    - serializedVersion: 3
+      time: 69.028305
+      value: 0.997528
+      inSlope: -0.009309507
+      outSlope: -0.009309507
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.20174828
+      outWeight: 0.103288814
+    - serializedVersion: 3
+      time: 200.74263
+      value: 0.098569
+      inSlope: -0.0002206109
+      outSlope: -0.0002206109
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 1
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  decelScaling:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.030872166
+      value: 0.20445895
+      inSlope: -0.00010356126
+      outSlope: -0.00010356126
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.4222375
+    - serializedVersion: 3
+      time: 69.028305
+      value: 0.20177263
+      inSlope: 0.0072018215
+      outSlope: 0.0072018215
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.27132913
+      outWeight: 0.103288814
+    - serializedVersion: 3
+      time: 200.74263
+      value: 1.0009052
+      inSlope: 0.0012689076
+      outSlope: 0.0012689076
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.45373708
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  decelDelaying:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.0004158616
+      inSlope: -0.0002670617
+      outSlope: -0.0002670617
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.2869255
+    - serializedVersion: 3
+      time: 1.32118
+      value: 0.16632849
+      inSlope: 0.22827345
+      outSlope: 0.22827345
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.24063343
+      outWeight: 0.2508017
+    - serializedVersion: 3
+      time: 3.2170203
+      value: 0.99290735
+      inSlope: 0.07485306
+      outSlope: 0.07485306
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.36465225
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   forwardSpeed: 70
   maxForwardSpeed: 200
-  forwardDecelSpeed: 0.2
-  forwardAccelSpeed: 0.27
+  forwardDecelSpeed: 0.25
+  forwardAccelSpeed: 0.38
   accelSpeed: 1.38
   maxSpeed: 35
   moveDamping: 0.85
   turnDamping: 0.98
   stopDamping: 0.985
-  rampLaunchSpeed: 27
+  rampLaunchSpeed: 27.55
   boostStartAccel: 10
-  boostTime: 2.35
+  boostTime: 2.8
+  ringLandAccel: 16
+  ringBoostTime: 0.7
   nearMissStartAccel: 10
-  nearMissBoostTime: 0.83
+  nearMissBoostTime: 1.1
   model: {fileID: 543450653113484294}
   speedGuageText: {fileID: 1032273434}
   boostParticles: {fileID: 2017033675}

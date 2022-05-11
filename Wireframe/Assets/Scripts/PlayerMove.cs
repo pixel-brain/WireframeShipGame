@@ -7,6 +7,9 @@ using UnityEngine.SceneManagement;
 public class PlayerMove : MonoBehaviour
 {
     [Header("Move Variables")]
+    public AnimationCurve accelScaling;
+    public AnimationCurve decelScaling;
+    public AnimationCurve decelDelaying;
     [Range(0f, 110f)]
     public float forwardSpeed;
     [Range(0f, 500f)]
@@ -35,6 +38,12 @@ public class PlayerMove : MonoBehaviour
     [Range(0f, 8f)]
     public float boostTime;
 
+    [Header("Ring Variables")]
+    [Range(0f, 30f)]
+    public float ringLandAccel;
+    [Range(0f, 8f)]
+    public float ringBoostTime;
+
     [Header("NearMiss Variables")]
     [Range(0f, 30f)]
     public float nearMissStartAccel;
@@ -50,12 +59,15 @@ public class PlayerMove : MonoBehaviour
     int moveInput;
     [HideInInspector]
     public float boostTimer;
+    float forwardDecelDelayTimer;
     [HideInInspector]
     public Rigidbody rigi;
+    bool grounded;
     // Start is called before the first frame update
     void Start()
     {
         rigi = GetComponent<Rigidbody>();
+        rigi.velocity = new Vector3(0, 0, forwardSpeed);
     }
 
     void FixedUpdate()
@@ -77,9 +89,9 @@ public class PlayerMove : MonoBehaviour
         {
             moveInput = 0;
         }
+        CheckGrounded();
         //Move or fly
         Move();
-        boostTimer -= Time.fixedDeltaTime;
     }
 
     void Move()
@@ -112,19 +124,46 @@ public class PlayerMove : MonoBehaviour
         model.transform.localEulerAngles = new Vector3(model.transform.localEulerAngles.x, xVel / 6f, -xVel / 1.5f);
         //Set forward speed
         float zVel = rigi.velocity.z;
-        if(boostTimer > 0)
+        if(boostTimer > 0 && grounded == true)
         {
-            zVel = Mathf.Clamp(zVel + forwardAccelSpeed, forwardSpeed, maxForwardSpeed);
+            zVel = Mathf.Clamp(zVel + (forwardAccelSpeed * accelScaling.Evaluate(zVel)), forwardSpeed, maxForwardSpeed);
             boostParticles.Play();
+            forwardDecelDelayTimer = 0;
+        }
+        else if(grounded == true)
+        {
+            zVel = Mathf.Clamp(zVel - (forwardDecelSpeed * decelScaling.Evaluate(zVel) * decelDelaying.Evaluate(forwardDecelDelayTimer)), forwardSpeed, maxForwardSpeed);
+            boostParticles.Stop();
+            forwardDecelDelayTimer += Time.fixedDeltaTime;
         }
         else
         {
-            zVel = Mathf.Clamp(zVel - forwardDecelSpeed, forwardSpeed, maxForwardSpeed);
             boostParticles.Stop();
         }
         speedGuageText.text = "" + Mathf.Round(zVel);
         //apply velocity
         rigi.velocity = new Vector3(xVel, rigi.velocity.y, zVel);
+        if(grounded == true)
+        {
+            boostTimer -= Time.fixedDeltaTime;
+        }
+    }
+
+    void CheckGrounded()
+    {
+        if(transform.position.y < 0.75f)
+        {
+            //Boost accel on land
+            if(grounded == false && boostTimer >= ringBoostTime)
+            {
+                rigi.velocity = new Vector3(rigi.velocity.x, rigi.velocity.y, rigi.velocity.z + (ringLandAccel * accelScaling.Evaluate(rigi.velocity.z)));
+            }
+            grounded = true;
+        }
+        else
+        {
+            grounded = false;
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -136,15 +175,8 @@ public class PlayerMove : MonoBehaviour
         else if(other.transform.tag == "Boost")
         {
             //Set Boost Time
-            if(boostTimer < 0)
-            {
-                boostTimer = boostTime;
-            }
-            else
-            {
-                boostTimer += boostTime;
-            }
-            rigi.velocity = new Vector3(rigi.velocity.x, rigi.velocity.y, rigi.velocity.z + boostStartAccel);
+            boostTimer = Mathf.Clamp(boostTimer + boostTime, boostTime, 5000);
+            rigi.velocity = new Vector3(rigi.velocity.x, rigi.velocity.y, rigi.velocity.z + (boostStartAccel * accelScaling.Evaluate(rigi.velocity.z)));
             Destroy(other.gameObject);
         }
     }
@@ -154,15 +186,13 @@ public class PlayerMove : MonoBehaviour
         if (other.transform.tag == "NearMiss")
         {
             //Set NearMiss Boost Time
-            if (boostTimer < 0)
-            {
-                boostTimer = nearMissBoostTime;
-            }
-            else
-            {
-                boostTimer += nearMissBoostTime;
-            }
-            rigi.velocity = new Vector3(rigi.velocity.x, rigi.velocity.y, rigi.velocity.z + nearMissStartAccel);
+            boostTimer = Mathf.Clamp(boostTimer + nearMissBoostTime, nearMissBoostTime, 5000);
+            rigi.velocity = new Vector3(rigi.velocity.x, rigi.velocity.y, rigi.velocity.z + (nearMissStartAccel * accelScaling.Evaluate(rigi.velocity.z)));
+        }
+        else if(other.transform.tag == "Ring")
+        {
+            boostTimer = Mathf.Clamp(boostTimer + ringBoostTime, ringBoostTime, 5000);
+            Destroy(other.gameObject);
         }
     }
 

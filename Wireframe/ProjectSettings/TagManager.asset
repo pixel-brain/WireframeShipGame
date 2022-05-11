@@ -8,6 +8,7 @@ TagManager:
   - Boost
   - Obstacle
   - NearMiss
+  - Ring
   layers:
   - Default
   - TransparentFX
