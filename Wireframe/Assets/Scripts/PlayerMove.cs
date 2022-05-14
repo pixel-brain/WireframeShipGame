@@ -166,6 +166,13 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
+    public void NearMiss()
+    {
+        //Set NearMiss Boost Time
+        boostTimer = Mathf.Clamp(boostTimer + nearMissBoostTime, nearMissBoostTime, 5000);
+        rigi.velocity = new Vector3(rigi.velocity.x, rigi.velocity.y, rigi.velocity.z + (nearMissStartAccel * accelScaling.Evaluate(rigi.velocity.z)));
+    }
+
     void OnTriggerEnter(Collider other)
     {
         if(other.transform.tag == "Ramp")
@@ -183,13 +190,7 @@ public class PlayerMove : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        if (other.transform.tag == "NearMiss")
-        {
-            //Set NearMiss Boost Time
-            boostTimer = Mathf.Clamp(boostTimer + nearMissBoostTime, nearMissBoostTime, 5000);
-            rigi.velocity = new Vector3(rigi.velocity.x, rigi.velocity.y, rigi.velocity.z + (nearMissStartAccel * accelScaling.Evaluate(rigi.velocity.z)));
-        }
-        else if(other.transform.tag == "Ring")
+        if(other.transform.tag == "Ring")
         {
             boostTimer = Mathf.Clamp(boostTimer + ringBoostTime, ringBoostTime, 5000);
             Destroy(other.gameObject);
