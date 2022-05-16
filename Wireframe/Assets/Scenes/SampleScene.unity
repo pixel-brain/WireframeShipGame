@@ -321,31 +321,43 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPos: {fileID: 1345081328}
-  xSpawnOffset: 260
-  zSpawnOffset: 255
-  distBtwnSpawns: 8
+  xSpawnOffset: 650
+  zSpawnOffset: 600
+  distBtwnSpawns: 2
   prefabs:
   - {fileID: 7335802876926218619, guid: 29daaa50da256b349889cb55ebef9d3d, type: 3}
   - {fileID: 5923382382892149929, guid: 6846b3c69bcf5134abf0e0ec6617eed6, type: 3}
-  - {fileID: 2144745228177997104, guid: 472329df328b2cb4db71961dad1f3b76, type: 3}
-  - {fileID: 6662847421152219200, guid: ec8501fd247cb824c9bf9c4a75fe4e64, type: 3}
-  - {fileID: 8296573467124208839, guid: ec2ab5b68b7815447919a59a4c4b86fb, type: 3}
-  - {fileID: 8002639780376560806, guid: 7d034ae79d13a4740b72bd03c43c2494, type: 3}
   - {fileID: 590921042945794066, guid: a6b86d85dfc9ec546a9a386c1e503467, type: 3}
-  - {fileID: 6301657549157375672, guid: c73960c732dfa7a48b6bdf04344a8687, type: 3}
-  - {fileID: 6087182320877378426, guid: 169d0807f932b6746bc20a552a5b5a3b, type: 3}
-  - {fileID: 8659006709267466478, guid: b52876befaf479d4b9cc0ec414a0067b, type: 3}
+  - {fileID: 536458606947458834, guid: 6047c9e47c9dc834483c40ef1997b5a6, type: 3}
+  - {fileID: 3395604340556241949, guid: 588b23bb0863bde468a1369522ec2568, type: 3}
+  - {fileID: 3859119824694644298, guid: 21e454ac55b3da042a033feff8f56696, type: 3}
+  - {fileID: 4467896712808081840, guid: b14931d2053b2c6478f539326aefc644, type: 3}
+  - {fileID: 9132813768905819819, guid: b3f016d6937dae44c84143216f8b2b41, type: 3}
+  - {fileID: 2634192234520713793, guid: 7d992c705eabf7347bd1ba5db29f0f84, type: 3}
+  - {fileID: 7666286304041129249, guid: 2111c5c48bcca4e49ab729c576bc320f, type: 3}
+  - {fileID: 1080265584860483659, guid: b3e558600e6ecd34c9263269e6e060af, type: 3}
+  - {fileID: 894780115036983915, guid: 7ba1b8cf427670344ad7598b5d8b2bd7, type: 3}
+  - {fileID: 4045330461331468335, guid: 857985d553389ea4ea291f81fc99cb3a, type: 3}
+  - {fileID: 3713281654764476064, guid: 84623ab4e04f9ca47a3ae41d82eb3d34, type: 3}
+  - {fileID: 1373351879102204945, guid: 7128aa63e562a504285617681eaff8d7, type: 3}
+  - {fileID: 6335405273553628191, guid: c9ebbd91089961a4993134e76f13c113, type: 3}
   ratios:
   - 5
   - 5
-  - 30
-  - 30
-  - 30
-  - 30
   - 1
-  - 30
-  - 30
-  - 30
+  - 40
+  - 40
+  - 40
+  - 40
+  - 40
+  - 40
+  - 40
+  - 40
+  - 40
+  - 40
+  - 40
+  - 40
+  - 40
 --- !u!4 &141953921
 Transform:
   m_ObjectHideFlags: 0
@@ -459,7 +471,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &271586203
 Transform:
   m_ObjectHideFlags: 0

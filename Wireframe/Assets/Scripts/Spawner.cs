@@ -44,11 +44,7 @@ public class Spawner : MonoBehaviour
             if(random < ratioCounter)
             {
                 GameObject newSpawn = Instantiate(prefabs[i], spawnPos, prefabs[i].transform.rotation);
-                //FIX
-                if(newSpawn.transform.eulerAngles == Vector3.zero)
-                {
-                    newSpawn.transform.eulerAngles = new Vector3(0, Random.Range(0, 359), 0);
-                }
+                newSpawn.transform.eulerAngles = new Vector3(newSpawn.transform.eulerAngles.x, Random.Range(0, 4) * 90f, newSpawn.transform.eulerAngles.z);
                 return;
             }
         }
