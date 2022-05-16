@@ -8,16 +8,19 @@ public class Spawner : MonoBehaviour
     public float xSpawnOffset;
     public float zSpawnOffset;
     public float distBtwnSpawns;
-    public GameObject mound1;
-    public GameObject ramp;
-    public GameObject boost;
+    public GameObject[] prefabs;
+    public float[] ratios;
 
+    float ratioTotal;
     float lastSpawnPos;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        foreach(float r in ratios)
+        {
+            ratioTotal += r;
+        }
     }
 
     // Update is called once per frame
@@ -33,18 +36,21 @@ public class Spawner : MonoBehaviour
     void Spawn()
     {
         Vector3 spawnPos = new Vector3(playerPos.position.x + Random.Range(-xSpawnOffset, xSpawnOffset), 0, playerPos.position.z + zSpawnOffset);
-        float random = Random.Range(0, 100);
-        if(random > 8)
+        float random = Random.Range(0, ratioTotal);
+        float ratioCounter = 0;
+        for(int i = 0; i < ratios.Length; i++)
         {
-            Instantiate(mound1, spawnPos, Quaternion.Euler(new Vector3(0, 0, 0)));
-        }
-        else if(random > 4)
-        {
-            Instantiate(boost, spawnPos, Quaternion.Euler(new Vector3(45, 45, 0)));
-        }
-        else
-        {
-            Instantiate(ramp, spawnPos, Quaternion.Euler(new Vector3(-90, 180, 0)));
+            ratioCounter += ratios[i];
+            if(random < ratioCounter)
+            {
+                GameObject newSpawn = Instantiate(prefabs[i], spawnPos, prefabs[i].transform.rotation);
+                //FIX
+                if(newSpawn.transform.eulerAngles == Vector3.zero)
+                {
+                    newSpawn.transform.eulerAngles = new Vector3(0, Random.Range(0, 359), 0);
+                }
+                return;
+            }
         }
     }
 }

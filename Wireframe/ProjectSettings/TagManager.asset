@@ -9,6 +9,7 @@ TagManager:
   - Obstacle
   - NearMiss
   - Ring
+  - LifePickup
   layers:
   - Default
   - TransparentFX

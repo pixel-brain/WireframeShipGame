@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.SceneManagement;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -29,6 +28,11 @@ public class PlayerMove : MonoBehaviour
     [Range(0f, 1f)]
     public float stopDamping;
 
+    [Header("Damage Variables")]
+    public float invinsibleTime;
+    public float damageStartDecel;
+    public Vector3 damageCamShake;
+
     [Header("Fly Variables")]
     public float rampLaunchSpeed;
 
@@ -54,6 +58,8 @@ public class PlayerMove : MonoBehaviour
     public Transform model;
     public TextMeshProUGUI speedGuageText;
     public ParticleSystem boostParticles;
+    public CameraShake camShakeScript;
+    Animator anim;
 
 
     int moveInput;
@@ -63,9 +69,11 @@ public class PlayerMove : MonoBehaviour
     [HideInInspector]
     public Rigidbody rigi;
     bool grounded;
+    public static float invinsibleTimer;
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponent<Animator>();
         rigi = GetComponent<Rigidbody>();
         rigi.velocity = new Vector3(0, 0, forwardSpeed);
     }
@@ -92,6 +100,11 @@ public class PlayerMove : MonoBehaviour
         CheckGrounded();
         //Move or fly
         Move();
+        invinsibleTimer -= Time.fixedDeltaTime;
+        if(invinsibleTimer < 0)
+        {
+            anim.SetBool("Invinsible", false);
+        }
     }
 
     void Move()
@@ -124,7 +137,11 @@ public class PlayerMove : MonoBehaviour
         model.transform.localEulerAngles = new Vector3(model.transform.localEulerAngles.x, xVel / 6f, -xVel / 1.5f);
         //Set forward speed
         float zVel = rigi.velocity.z;
-        if(boostTimer > 0 && grounded == true)
+        if(invinsibleTimer > 0)
+        {
+            anim.SetBool("Invinsible", true);
+        }
+        else if(boostTimer > 0 && grounded == true)
         {
             zVel = Mathf.Clamp(zVel + (forwardAccelSpeed * accelScaling.Evaluate(zVel)), forwardSpeed, maxForwardSpeed);
             boostParticles.Play();
@@ -173,13 +190,21 @@ public class PlayerMove : MonoBehaviour
         rigi.velocity = new Vector3(rigi.velocity.x, rigi.velocity.y, rigi.velocity.z + (nearMissStartAccel * accelScaling.Evaluate(rigi.velocity.z)));
     }
 
+    public void TakeDamage()
+    {
+        camShakeScript.Shake(damageCamShake.x, damageCamShake.y, (int)damageCamShake.z);
+        rigi.velocity = new Vector3(0, 0, 50);
+        boostTimer = 0;
+        invinsibleTimer = invinsibleTime;
+    }
+
     void OnTriggerEnter(Collider other)
     {
-        if(other.transform.tag == "Ramp")
+        if(other.transform.tag == "Ramp" && invinsibleTimer < 0)
         {
             rigi.velocity = new Vector3(rigi.velocity.x, rampLaunchSpeed, rigi.velocity.z);
         }
-        else if(other.transform.tag == "Boost")
+        else if(other.transform.tag == "Boost" && invinsibleTimer < 0)
         {
             //Set Boost Time
             boostTimer = Mathf.Clamp(boostTimer + boostTime, boostTime, 5000);
@@ -194,14 +219,6 @@ public class PlayerMove : MonoBehaviour
         {
             boostTimer = Mathf.Clamp(boostTimer + ringBoostTime, ringBoostTime, 5000);
             Destroy(other.gameObject);
-        }
-    }
-
-    void OnCollisionEnter(Collision other)
-    {
-        if(other.transform.tag == "Obstacle")
-        {
-            SceneManager.LoadScene("SampleScene");
         }
     }
 }
