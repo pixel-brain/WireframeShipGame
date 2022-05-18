@@ -10,6 +10,7 @@ TagManager:
   - NearMiss
   - Ring
   - LifePickup
+  - RingRim
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - Player
   - NearMiss
   - Obstacle
-  - 
+  - Clear
   - 
   - 
   - 

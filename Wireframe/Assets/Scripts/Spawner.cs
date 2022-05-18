@@ -8,6 +8,7 @@ public class Spawner : MonoBehaviour
     public float xSpawnOffset;
     public float zSpawnOffset;
     public float distBtwnSpawns;
+    public float destroyTime;
     public GameObject[] prefabs;
     public float[] ratios;
 
@@ -44,7 +45,7 @@ public class Spawner : MonoBehaviour
             if(random < ratioCounter)
             {
                 GameObject newSpawn = Instantiate(prefabs[i], spawnPos, prefabs[i].transform.rotation);
-                newSpawn.transform.eulerAngles = new Vector3(newSpawn.transform.eulerAngles.x, Random.Range(0, 4) * 90f, newSpawn.transform.eulerAngles.z);
+                Destroy(newSpawn, destroyTime);
                 return;
             }
         }

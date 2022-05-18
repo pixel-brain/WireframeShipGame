@@ -5,13 +5,14 @@ using UnityEngine;
 public class AirRingSpawner : MonoBehaviour
 {
     Rigidbody playerRigi;
-    public GameObject ringPrefab;
+    public GameObject[] ringPrefabs;
     public float zOffset;
     public float minXOffset;
     public float maxXOffset;
-    public float minYSpawnHeight;
-    public GameObject currentRing;
-    bool hitFirst;
+    GameObject currentRing;
+    [HideInInspector]
+    public int state;
+    int ringIndex;
 
     // Start is called before the first frame update
     void Start()
@@ -22,22 +23,33 @@ public class AirRingSpawner : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(currentRing == null)
+        if(state > 0 && state <= 3 && currentRing == null)
         {
-            float randX = Random.Range(-(maxXOffset - minXOffset), (maxXOffset - minXOffset));
-            float yTrajectoryOffset = (playerRigi.velocity.y * zOffset) + (0.5f * Physics.gravity.y * zOffset * zOffset);
-            Vector3 spawnPos = playerRigi.position + new Vector3(minXOffset * Mathf.Sign(randX) + randX, yTrajectoryOffset, playerRigi.velocity.z * zOffset);
-            if (spawnPos.y < minYSpawnHeight && hitFirst == true)
-            {
-                Destroy(this.gameObject);
-                return;
-            }
-            currentRing = Instantiate(ringPrefab, spawnPos, Quaternion.identity);
-            hitFirst = true;
+            currentRing = Instantiate(ringPrefabs[ringIndex], SpawnPos(), Quaternion.identity);
+            currentRing.GetComponent<AirRing>().spawnerScript = GetComponent<AirRingSpawner>();
+            state++;
+            ringIndex++;
         }
-        if(hitFirst == false && playerRigi.position.z > transform.position.z + 100f)
+    }
+
+    public Vector3 SpawnPos()
+    {
+        float randX = Random.Range(minXOffset, maxXOffset) * ((Random.Range(0, 2) - 0.5f) * 2);
+        float yTrajectoryOffset = (playerRigi.velocity.y * zOffset) + (0.5f * Physics.gravity.y * zOffset * zOffset);
+        Vector3 spawnPos = playerRigi.position + new Vector3(minXOffset * Mathf.Sign(randX) + randX, yTrajectoryOffset, playerRigi.velocity.z * zOffset);
+        return spawnPos;
+    }
+
+    void OnDestroy()
+    {
+        Destroy(currentRing);
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.transform.tag == "Player")
         {
-            Destroy(this.gameObject);
+            state = 1;
         }
     }
 }

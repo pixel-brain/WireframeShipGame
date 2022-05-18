@@ -29,12 +29,19 @@ public class PlayerMove : MonoBehaviour
     public float stopDamping;
 
     [Header("Damage Variables")]
+    [Range(0f, 3f)]
     public float invinsibleTime;
-    public float damageStartDecel;
+    [Range(0f, 110f)]
+    public float damagedForwardSpeed;
     public Vector3 damageCamShake;
 
-    [Header("Fly Variables")]
+    [Header("Ramp Variables")]
+    [Range(0f, 50f)]
     public float rampLaunchSpeed;
+    [Range(0f, 1f)]
+    public float angleSmoothing;
+    [Range(0f, 45f)]
+    public float maxAngle;
 
     [Header("Boost Variables")]
     [Range(0f, 30f)]
@@ -134,12 +141,16 @@ public class PlayerMove : MonoBehaviour
         //limit max speed
         xVel = Mathf.Clamp(xVel, -maxSpeed, maxSpeed);
         //Rotation
-        model.transform.localEulerAngles = new Vector3(model.transform.localEulerAngles.x, xVel / 6f, -xVel / 1.5f);
+        float angle = Vector3.Angle(transform.forward, new Vector3(0, rigi.velocity.y, rigi.velocity.z));
+        angle = Mathf.Clamp(angle, -maxAngle, maxAngle);
+        angle = Mathf.Sign(rigi.velocity.y) * Mathf.LerpAngle(model.eulerAngles.x, -angle, angleSmoothing);
+        model.localEulerAngles = new Vector3(angle, xVel / 6f, -xVel / 1.5f);
         //Set forward speed
         float zVel = rigi.velocity.z;
         if(invinsibleTimer > 0)
         {
             anim.SetBool("Invinsible", true);
+            zVel = damagedForwardSpeed;
         }
         else if(boostTimer > 0 && grounded == true)
         {
@@ -171,9 +182,13 @@ public class PlayerMove : MonoBehaviour
         if(transform.position.y < 0.75f)
         {
             //Boost accel on land
-            if(grounded == false && boostTimer >= ringBoostTime)
+            if(grounded == false)
             {
-                rigi.velocity = new Vector3(rigi.velocity.x, rigi.velocity.y, rigi.velocity.z + (ringLandAccel * accelScaling.Evaluate(rigi.velocity.z)));
+                anim.SetTrigger("Land");
+                if(boostTimer >= ringBoostTime)
+                {
+                    rigi.velocity = new Vector3(rigi.velocity.x, rigi.velocity.y, rigi.velocity.z + (ringLandAccel * accelScaling.Evaluate(rigi.velocity.z)));
+                }
             }
             grounded = true;
         }
@@ -190,17 +205,22 @@ public class PlayerMove : MonoBehaviour
         rigi.velocity = new Vector3(rigi.velocity.x, rigi.velocity.y, rigi.velocity.z + (nearMissStartAccel * accelScaling.Evaluate(rigi.velocity.z)));
     }
 
+    public void Ring()
+    {
+        boostTimer = Mathf.Clamp(boostTimer + ringBoostTime, ringBoostTime, 5000);
+    }
+
     public void TakeDamage()
     {
         camShakeScript.Shake(damageCamShake.x, damageCamShake.y, (int)damageCamShake.z);
-        rigi.velocity = new Vector3(0, 0, 50);
+        rigi.velocity = new Vector3(0, 0, damagedForwardSpeed);
         boostTimer = 0;
         invinsibleTimer = invinsibleTime;
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.transform.tag == "Ramp" && invinsibleTimer < 0)
+        if (other.transform.tag == "Ramp" && invinsibleTimer < 0)
         {
             rigi.velocity = new Vector3(rigi.velocity.x, rampLaunchSpeed, rigi.velocity.z);
         }
@@ -209,15 +229,6 @@ public class PlayerMove : MonoBehaviour
             //Set Boost Time
             boostTimer = Mathf.Clamp(boostTimer + boostTime, boostTime, 5000);
             rigi.velocity = new Vector3(rigi.velocity.x, rigi.velocity.y, rigi.velocity.z + (boostStartAccel * accelScaling.Evaluate(rigi.velocity.z)));
-            Destroy(other.gameObject);
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if(other.transform.tag == "Ring")
-        {
-            boostTimer = Mathf.Clamp(boostTimer + ringBoostTime, ringBoostTime, 5000);
             Destroy(other.gameObject);
         }
     }
