@@ -2,9 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Cinemachine;
 
 public class PlayerMove : MonoBehaviour
 {
+    [Header("Effects Variables")]
+    public float minFOV;
+    public float maxFOV;
+    public float minCamDist;
+    public float maxCamDist;
+    public float shakeCamStartSpeed;
+    public float maxSpeedCamShakeIntensity;
+    public float shakeCamFrequency;
+
     [Header("Move Variables")]
     public AnimationCurve accelScaling;
     public AnimationCurve decelScaling;
@@ -17,6 +27,8 @@ public class PlayerMove : MonoBehaviour
     public float forwardDecelSpeed;
     [Range(0f, 3f)]
     public float forwardAccelSpeed;
+    [Range(0f, 3f)]
+    public float forwardInitialAccelSpeed;
     [Range(0f, 8f)]
     public float accelSpeed;
     [Range(0f, 40f)]
@@ -44,20 +56,20 @@ public class PlayerMove : MonoBehaviour
     public float maxAngle;
 
     [Header("Boost Variables")]
-    [Range(0f, 30f)]
-    public float boostStartAccel;
+    [Range(0f, 3f)]
+    public float boostInitialAccelTime;
     [Range(0f, 8f)]
     public float boostTime;
 
     [Header("Ring Variables")]
-    [Range(0f, 30f)]
-    public float ringLandAccel;
+    [Range(0f, 3f)]
+    public float ringInitialAccelTime;
     [Range(0f, 8f)]
     public float ringBoostTime;
 
     [Header("NearMiss Variables")]
-    [Range(0f, 30f)]
-    public float nearMissStartAccel;
+    [Range(0f, 3f)]
+    public float nearMissInitialAccelTime;
     [Range(0f, 5f)]
     public float nearMissBoostTime;
 
@@ -66,12 +78,14 @@ public class PlayerMove : MonoBehaviour
     public TextMeshProUGUI speedGuageText;
     public ParticleSystem boostParticles;
     public CameraShake camShakeScript;
+    public CinemachineVirtualCamera vCam;
     Animator anim;
 
 
     int moveInput;
     [HideInInspector]
     public float boostTimer;
+    public float boostInitialTimer;
     float forwardDecelDelayTimer;
     [HideInInspector]
     public Rigidbody rigi;
@@ -105,8 +119,24 @@ public class PlayerMove : MonoBehaviour
             moveInput = 0;
         }
         CheckGrounded();
-        //Move or fly
+        //Move
         Move();
+
+        //----------------Apply speed feel effects--------------------
+        float speedLerp = Mathf.Clamp((rigi.velocity.z - forwardSpeed) / (maxForwardSpeed - forwardSpeed), 0, 1);
+        //FOV
+        vCam.m_Lens.FieldOfView = Mathf.Lerp(minFOV, maxFOV, speedLerp);
+        //Camera Shake
+        if(camShakeScript.shakeTimer <= 0)
+        {
+            CinemachineBasicMultiChannelPerlin noise = vCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+            noise.m_FrequencyGain = shakeCamFrequency;
+            noise.m_AmplitudeGain = Mathf.Lerp(0f, maxSpeedCamShakeIntensity, speedLerp - (shakeCamStartSpeed / maxForwardSpeed));
+        }
+        //Camera Follow Distance
+        CinemachineComponentBase componentBase = vCam.GetCinemachineComponent(CinemachineCore.Stage.Body);
+        (componentBase as CinemachineFramingTransposer).m_CameraDistance = Mathf.Lerp(minCamDist, maxCamDist, speedLerp);
+
         invinsibleTimer -= Time.fixedDeltaTime;
         if(invinsibleTimer < 0)
         {
@@ -154,8 +184,13 @@ public class PlayerMove : MonoBehaviour
         }
         else if(boostTimer > 0 && grounded == true)
         {
-            zVel = Mathf.Clamp(zVel + (forwardAccelSpeed * accelScaling.Evaluate(zVel)), forwardSpeed, maxForwardSpeed);
-            boostParticles.Play();
+            if(boostInitialTimer > 0)
+            {
+                zVel += accelScaling.Evaluate(zVel) * forwardInitialAccelSpeed;
+            }
+            zVel = Mathf.Clamp(zVel + (forwardAccelSpeed * accelScaling.Evaluate(rigi.velocity.z)), forwardSpeed, maxForwardSpeed);
+            if (!boostParticles.isPlaying)
+                boostParticles.Play();
             forwardDecelDelayTimer = 0;
         }
         else if(grounded == true)
@@ -174,6 +209,7 @@ public class PlayerMove : MonoBehaviour
         if(grounded == true)
         {
             boostTimer -= Time.fixedDeltaTime;
+            boostInitialTimer -= Time.fixedDeltaTime;
         }
     }
 
@@ -187,7 +223,8 @@ public class PlayerMove : MonoBehaviour
                 anim.SetTrigger("Land");
                 if(boostTimer >= ringBoostTime)
                 {
-                    rigi.velocity = new Vector3(rigi.velocity.x, rigi.velocity.y, rigi.velocity.z + (ringLandAccel * accelScaling.Evaluate(rigi.velocity.z)));
+                    boostInitialTimer = ringInitialAccelTime;
+                    //rigi.velocity = new Vector3(rigi.velocity.x, rigi.velocity.y, rigi.velocity.z + (ringInitialAccel * accelScaling.Evaluate(rigi.velocity.z)));
                 }
             }
             grounded = true;
@@ -202,7 +239,8 @@ public class PlayerMove : MonoBehaviour
     {
         //Set NearMiss Boost Time
         boostTimer = Mathf.Clamp(boostTimer + nearMissBoostTime, nearMissBoostTime, 5000);
-        rigi.velocity = new Vector3(rigi.velocity.x, rigi.velocity.y, rigi.velocity.z + (nearMissStartAccel * accelScaling.Evaluate(rigi.velocity.z)));
+        boostInitialTimer = nearMissInitialAccelTime;
+        //rigi.velocity = new Vector3(rigi.velocity.x, rigi.velocity.y, rigi.velocity.z + (nearMissInitialAccel * accelScaling.Evaluate(rigi.velocity.z)));
     }
 
     public void Ring()
@@ -228,7 +266,8 @@ public class PlayerMove : MonoBehaviour
         {
             //Set Boost Time
             boostTimer = Mathf.Clamp(boostTimer + boostTime, boostTime, 5000);
-            rigi.velocity = new Vector3(rigi.velocity.x, rigi.velocity.y, rigi.velocity.z + (boostStartAccel * accelScaling.Evaluate(rigi.velocity.z)));
+            boostInitialTimer = boostInitialAccelTime;
+            //rigi.velocity = new Vector3(rigi.velocity.x, rigi.velocity.y, rigi.velocity.z + (boostInitialAccel * accelScaling.Evaluate(rigi.velocity.z)));
             Destroy(other.gameObject);
         }
     }

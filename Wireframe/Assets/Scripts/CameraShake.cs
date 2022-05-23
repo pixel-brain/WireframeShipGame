@@ -6,7 +6,9 @@ using Cinemachine;
 public class CameraShake : MonoBehaviour
 {
     CinemachineVirtualCamera vCam;
-    float shakeTimer;
+    public float frequency;
+    [HideInInspector]
+    public float shakeTimer;
     float startingIntensity;
     float shakeTimerTotal;
 
@@ -19,6 +21,7 @@ public class CameraShake : MonoBehaviour
     {
         CinemachineBasicMultiChannelPerlin noise = vCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         noise.m_AmplitudeGain = intensity;
+        noise.m_FrequencyGain = frequency;
         shakeTimer = time;
         shakeTimerTotal = time;
         startingIntensity = intensity;
