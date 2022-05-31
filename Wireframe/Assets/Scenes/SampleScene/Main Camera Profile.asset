@@ -52,7 +52,7 @@ MonoBehaviour:
   m_AdvancedMode: 0
   postExposure:
     m_OverrideState: 1
-    m_Value: 0.29
+    m_Value: 0.2
   contrast:
     m_OverrideState: 1
     m_Value: 8
@@ -65,8 +65,8 @@ MonoBehaviour:
     showAlpha: 0
     showEyeDropper: 1
   hueShift:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: -36
     min: -180
     max: 180
   saturation:

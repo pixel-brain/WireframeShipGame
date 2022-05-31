@@ -14,9 +14,15 @@ public class PlayerMove : MonoBehaviour
     public float camLagTime;
     public float camLagAmount;
     public AnimationCurve camLag;
-    public float shakeCamStartSpeed;
+    public float minSpeedCamShakeIntensity;
     public float maxSpeedCamShakeIntensity;
     public float shakeCamFrequency;
+    public float speedLinesMinTransparency;
+    public float speedLinesMaxTransparency;
+    public float speedLinesMinSpawnRate;
+    public float speedLinesMaxSpawnRate;
+    public float speedLinesMinRadius;
+    public float speedLinesMaxRadius;
 
     [Header("Move Variables")]
     public AnimationCurve accelScaling;
@@ -78,6 +84,7 @@ public class PlayerMove : MonoBehaviour
     public ParticleSystem boostParticles;
     public CameraShake camShakeScript;
     public CinemachineVirtualCamera vCam;
+    public ParticleSystem speedLinesParticles;
     Animator anim;
 
 
@@ -133,7 +140,7 @@ public class PlayerMove : MonoBehaviour
         {
             CinemachineBasicMultiChannelPerlin noise = vCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
             noise.m_FrequencyGain = shakeCamFrequency;
-            noise.m_AmplitudeGain = Mathf.Lerp(0f, maxSpeedCamShakeIntensity, speedLerp - (shakeCamStartSpeed / maxForwardSpeed));
+            noise.m_AmplitudeGain = Mathf.Clamp(Mathf.Lerp(minSpeedCamShakeIntensity, maxSpeedCamShakeIntensity, speedLerp), 0, Mathf.Infinity);
         }
         //Camera Follow Distance
         CinemachineComponentBase componentBase = vCam.GetCinemachineComponent(CinemachineCore.Stage.Body);
@@ -144,6 +151,16 @@ public class PlayerMove : MonoBehaviour
         offsetFollowDistance += camLag.Evaluate(initialBoostLerp) * camLagAmount;
         offsetFollowDistance = Mathf.Clamp(offsetFollowDistance, 0f, 100f);
         (componentBase as CinemachineFramingTransposer).m_TrackedObjectOffset.z = targetFollowDistance - offsetFollowDistance;
+
+        //SpeedLines
+        var main = speedLinesParticles.main;
+        Color32 lerpedColor = new Color32(200, 200, 200, (byte)Mathf.Clamp(Mathf.Lerp(speedLinesMinTransparency, speedLinesMaxTransparency, speedLerp), 0, Mathf.Infinity));
+        main.startColor = new ParticleSystem.MinMaxGradient(new Color32(255,255,255,4), lerpedColor);
+        var emission = speedLinesParticles.emission;
+        emission.rateOverTime = Mathf.Lerp(speedLinesMinSpawnRate, speedLinesMaxSpawnRate, speedLerp);
+
+        ParticleSystem.ShapeModule shape = speedLinesParticles.GetComponent<ParticleSystem>().shape;
+        shape.radius = Mathf.Lerp(speedLinesMinRadius, speedLinesMaxRadius, speedLerp);
 
         invinsibleTimer -= Time.fixedDeltaTime;
         if(invinsibleTimer < 0)
