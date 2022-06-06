@@ -112,7 +112,7 @@ Material:
     - LineHeight: 0.989
     - LineWidth: 0.98
     - Metallic: 1
-    - Smoothness: 0.5
+    - Smoothness: 0.918
     - Tiling: 215
     - _AlphaClip: 0
     - _BASE_COLOR_WEIGHT: 1
@@ -149,7 +149,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - BaseColor: {r: 0.6603774, g: 0, b: 0.19339626, a: 1}
+    - BaseColor: {r: 0.039215688, g: 0.039215688, b: 0.039215688, a: 1}
     - EmissionColor: {r: 0, g: 4.8143015, b: 19.037523, a: 1}
     - GridColor: {r: 0.4392157, g: 1.6313726, b: 11.984314, a: 1}
     - Tiling: {r: 192, g: 64, b: 0, a: 0}
