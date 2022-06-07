@@ -12,6 +12,7 @@ public class SpeedGuage : MonoBehaviour
     public float startRotation;
     public float endRotation;
     public float spacing;
+    public float size;
     float rotation;
     List<GameObject> pieces = new List<GameObject>();
     int previousIndex;
@@ -24,7 +25,7 @@ public class SpeedGuage : MonoBehaviour
             GameObject p = Instantiate(piece, parentObject.position, Quaternion.Euler(new Vector3(0, 0, rotation)));
             pieces.Add(p);
             p.transform.SetParent(parentObject);
-            p.transform.localScale = Vector3.one;
+            p.transform.localScale = Vector3.one * size;
             rotation -= spacing;
         }
     }

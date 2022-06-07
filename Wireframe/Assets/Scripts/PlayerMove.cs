@@ -111,6 +111,7 @@ public class PlayerMove : MonoBehaviour
     void FixedUpdate()
     {
         //Get Input
+        /*
         if(Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
@@ -127,6 +128,8 @@ public class PlayerMove : MonoBehaviour
         {
             moveInput = 0;
         }
+        */
+        moveInput = (int)Input.GetAxisRaw("Horizontal");
         CheckGrounded();
         //Move
         Move();
