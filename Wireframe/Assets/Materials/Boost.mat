@@ -32,6 +32,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - ScanTexture:
+        m_Texture: {fileID: 2800000, guid: aabc845fc64caf84aa82a25a1e37cbea, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -94,6 +98,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - PulseSpeed: 7
+    - ScanScale: 3
+    - ScanSpeed: -0.25
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -121,8 +128,9 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
+    - MinMaxAlpha: {r: 0.4, g: 0.7, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 3.482202, g: 0.7100961, b: 0, a: 1}
+    - _Color: {r: 0.6093862, g: 0, b: 8.47419, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_BuildTextureStacks: []

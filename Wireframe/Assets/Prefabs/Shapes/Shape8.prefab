@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 9092640481741207052}
   - component: {fileID: 4775832375139806848}
   - component: {fileID: -9032353478723237302}
+  - component: {fileID: -1265623708177636091}
   m_Layer: 8
   m_Name: Shape8
   m_TagString: Obstacle
@@ -97,3 +98,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.4508066, y: 4.450806, z: 17.631044}
   m_Center: {x: 0, y: 0, z: 8.80988}
+--- !u!95 &-1265623708177636091
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080265584860483659}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a0ea905196028944bb84b06747dd20f1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
