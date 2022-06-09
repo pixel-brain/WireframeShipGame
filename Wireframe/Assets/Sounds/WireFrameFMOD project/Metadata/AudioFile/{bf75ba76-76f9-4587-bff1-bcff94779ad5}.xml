@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{bf75ba76-76f9-4587-bff1-bcff94779ad5}">
+		<property name="assetPath">
+			<value>WireframeShip- Theme#1 (140bpm-GbMaj).wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>13.714291666666666</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{f03f0df1-a0d2-4b64-b876-e85e494c454e}</destination>
+		</relationship>
+	</object>
+</objects>
