@@ -9858,6 +9858,7 @@ GameObject:
   - component: {fileID: 5280968270207227437}
   - component: {fileID: 7975087554957370087}
   - component: {fileID: 8749550975510773373}
+  - component: {fileID: 7609700178328763499}
   m_Layer: 0
   m_Name: boost 1
   m_TagString: Boost
@@ -9944,3 +9945,33 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.0112305, y: 5.7308817, z: 1.5}
   m_Center: {x: 0.3012352, y: 0, z: 0}
+--- !u!114 &7609700178328763499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8479661893667046194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: Player
+  EventReference:
+    Guid:
+      Data1: -199467538
+      Data2: 1247886602
+      Data3: 1581939356
+      Data4: 1790792455
+    Path: event:/SFX/PowerUps/SpeedBoost
+  Event: 
+  PlayEvent: 3
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20

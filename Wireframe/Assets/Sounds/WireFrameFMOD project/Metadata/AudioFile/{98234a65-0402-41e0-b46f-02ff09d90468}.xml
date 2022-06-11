@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{98234a65-0402-41e0-b46f-02ff09d90468}">
+		<property name="assetPath">
+			<value>Damage fx.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.2275624999999999</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{f03f0df1-a0d2-4b64-b876-e85e494c454e}</destination>
+		</relationship>
+	</object>
+</objects>

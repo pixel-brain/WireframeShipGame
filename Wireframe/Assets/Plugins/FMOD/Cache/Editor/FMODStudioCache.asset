@@ -80,7 +80,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 4205
 --- !u!114 &-5282613728613633991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,7 +107,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 1227
 --- !u!114 &-4187431545303791905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,10 +123,10 @@ MonoBehaviour:
   Path: Assets/Sounds/WireFrameFMOD project/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637903912448225877
+  lastModified: 637904248328663999
   FileSizes:
   - Name: Desktop
-    Value: 291776
+    Value: 2426592
   Exists: 1
 --- !u!114 &-3968562129278226725
 MonoBehaviour:
@@ -181,7 +181,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 3160
 --- !u!114 &-3472421826286187931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,7 +208,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 13714
+  Length: 151257
 --- !u!114 &-1195536431646425926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,13 +229,13 @@ MonoBehaviour:
     Data4: 488526986
   Banks:
   - {fileID: -4187431545303791905}
-  IsStream: 0
+  IsStream: 1
   Is3D: 0
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 14066
 --- !u!114 &-531860040343674130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,7 +296,7 @@ MonoBehaviour:
   - {fileID: -4187431545303791905}
   StringsBanks:
   - {fileID: 7212003574836815941}
-  cacheTime: 637903912448248963
+  cacheTime: 637904248328683951
   cacheVersion: 131591
 --- !u!114 &6553745440271509095
 MonoBehaviour:
@@ -324,7 +324,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 3291
 --- !u!114 &7115768101098949997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -367,7 +367,7 @@ MonoBehaviour:
   Path: Assets/Sounds/WireFrameFMOD project/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637903912448248963
+  lastModified: 637904248328683951
   FileSizes:
   - Name: Desktop
     Value: 1464

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{99f62d2b-f664-4663-b844-e6737e87703d}">
+		<property name="assetPath">
+			<value>healthFX.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>2</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{f03f0df1-a0d2-4b64-b876-e85e494c454e}</destination>
+		</relationship>
+	</object>
+</objects>

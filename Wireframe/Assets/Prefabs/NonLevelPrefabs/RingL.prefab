@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ecd48e1192d0e14f880a10679e8726d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ringSFX: 
   ringInsideDist: 9.6
   ringOutsideDist: 13.8
   moveSpeed: 9

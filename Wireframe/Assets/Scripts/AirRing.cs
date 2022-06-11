@@ -1,9 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
 
 public class AirRing : MonoBehaviour
 {
+    [SerializeField]
+    [EventRef]
+    public string ringSFX = null;
+
     public float ringInsideDist;
     public float ringOutsideDist;
     public float moveSpeed;
@@ -38,6 +43,10 @@ public class AirRing : MonoBehaviour
             float xDist = Mathf.Abs(player.position.x - transform.position.x);
             if(xDist < ringInsideDist)
             {
+                if (ringSFX != null)
+                {
+                    RuntimeManager.PlayOneShot(ringSFX);
+                }
                 //Center
                 player.GetComponent<PlayerMove>().Ring();
                 ParticleSystem particles = Instantiate(particlesPrefab, transform.position, Quaternion.identity);
