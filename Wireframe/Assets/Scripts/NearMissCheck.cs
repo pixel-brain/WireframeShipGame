@@ -17,7 +17,7 @@ public class NearMissCheck : MonoBehaviour
     {
         if(PlayerMove.invinsibleTimer < 0)
         {
-            nearMissParticles.transform.position = playerCol.ClosestPoint(other.transform.position);
+            nearMissParticles.transform.localPosition = new Vector3(Mathf.Abs(nearMissParticles.transform.localPosition.x) * -Mathf.Sign(nearMissParticles.transform.position.x - other.transform.position.x), nearMissParticles.transform.localPosition.y, nearMissParticles.transform.localPosition.z);
             nearMissParticles.Play();
             playerMoveScript.NearMiss();
         }

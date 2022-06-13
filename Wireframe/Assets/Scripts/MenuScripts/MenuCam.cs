@@ -30,7 +30,7 @@ public class MenuCam : MonoBehaviour
         {
             cursor.gameObject.SetActive(true);
             //Move player back to center
-            Vector3 lerpedPos = Vector3.Lerp(transform.position, new Vector3(0, 1.6f, 0), cameraMoveLerpSpeed);
+            Vector3 lerpedPos = Vector3.Lerp(transform.position, new Vector3(0, 1.6f, 0), cameraMoveLerpSpeed * 60f * Time.deltaTime);
             transform.position = lerpedPos;
 
             //Rotate camera when in center
@@ -55,9 +55,9 @@ public class MenuCam : MonoBehaviour
         else
         {
             //Move player towards box
-            Vector3 lerpedPos = Vector3.Lerp(transform.position, targetPos, cameraMoveLerpSpeed * 0.7f);
+            Vector3 lerpedPos = Vector3.Lerp(transform.position, targetPos, cameraMoveLerpSpeed * 60f * Time.deltaTime);
             transform.position = lerpedPos;
-            Quaternion lerpedRot = Quaternion.Lerp(transform.rotation, cursor.rotation, cameraMoveLerpSpeed);
+            Quaternion lerpedRot = Quaternion.Lerp(transform.rotation, cursor.rotation, cameraMoveLerpSpeed * 45f * Time.deltaTime);
             transform.rotation = lerpedRot;
         }
 
