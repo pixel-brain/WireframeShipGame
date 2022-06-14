@@ -97,6 +97,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ecd48e1192d0e14f880a10679e8726d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ringSFX:
+    Guid:
+      Data1: -405999515
+      Data2: 1228664999
+      Data3: 960030107
+      Data4: -1509753169
+    Path: event:/SFX/PowerUps/Rings/Ring2
   ringInsideDist: 6.3
   ringOutsideDist: 10.5
   moveSpeed: 9

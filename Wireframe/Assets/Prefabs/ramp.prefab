@@ -4985,6 +4985,7 @@ GameObject:
   - component: {fileID: 7335802876926218621}
   - component: {fileID: 7335802876926218608}
   - component: {fileID: 7335802876926218620}
+  - component: {fileID: -33233224585993071}
   m_Layer: 0
   m_Name: ramp
   m_TagString: Ramp
@@ -5093,6 +5094,36 @@ MonoBehaviour:
   minXOffset: 2.8
   maxXOffset: 4.3
   state: 0
+--- !u!114 &-33233224585993071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7335802876926218619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: Player
+  EventReference:
+    Guid:
+      Data1: 1062022958
+      Data2: 1151147123
+      Data3: 273883564
+      Data4: 899395153
+    Path: event:/SFX/PowerUps/Ramp
+  Event: 
+  PlayEvent: 3
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &9200493188344973938
 GameObject:
   m_ObjectHideFlags: 0

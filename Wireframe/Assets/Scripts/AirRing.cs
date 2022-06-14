@@ -6,8 +6,7 @@ using FMODUnity;
 public class AirRing : MonoBehaviour
 {
     [SerializeField]
-    [EventRef]
-    public string ringSFX = null;
+    EventReference ringSFX;
 
     public float ringInsideDist;
     public float ringOutsideDist;
@@ -43,10 +42,7 @@ public class AirRing : MonoBehaviour
             float xDist = Mathf.Abs(player.position.x - transform.position.x);
             if(xDist < ringInsideDist)
             {
-                if (ringSFX != null)
-                {
-                    RuntimeManager.PlayOneShot(ringSFX);
-                }
+                RuntimeManager.PlayOneShot(ringSFX);
                 //Center
                 player.GetComponent<PlayerMove>().Ring();
                 ParticleSystem particles = Instantiate(particlesPrefab, transform.position, Quaternion.identity);

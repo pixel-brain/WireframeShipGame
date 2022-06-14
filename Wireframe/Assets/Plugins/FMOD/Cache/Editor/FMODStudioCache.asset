@@ -26,7 +26,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 409
 --- !u!114 &-6423400309425018534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,7 +80,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 4205
 --- !u!114 &-5282613728613633991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,7 +107,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 1227
 --- !u!114 &-4187431545303791905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,10 +123,10 @@ MonoBehaviour:
   Path: Assets/Sounds/WireFrameFMOD project/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637903941455841054
+  lastModified: 637908319616451521
   FileSizes:
   - Name: Desktop
-    Value: 291776
+    Value: 4652576
   Exists: 1
 --- !u!114 &-3968562129278226725
 MonoBehaviour:
@@ -148,13 +148,13 @@ MonoBehaviour:
     Data4: 1381981457
   Banks:
   - {fileID: -4187431545303791905}
-  IsStream: 0
+  IsStream: 1
   Is3D: 0
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 179826
 --- !u!114 &-3717257419534588413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,7 +181,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 3160
 --- !u!114 &-3472421826286187931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,7 +208,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 13714
+  Length: 146751
 --- !u!114 &-1195536431646425926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,13 +229,13 @@ MonoBehaviour:
     Data4: 488526986
   Banks:
   - {fileID: -4187431545303791905}
-  IsStream: 0
+  IsStream: 1
   Is3D: 0
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 14066
 --- !u!114 &-531860040343674130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,7 +262,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 2156
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,13 +291,44 @@ MonoBehaviour:
   - {fileID: 7115768101098949997}
   - {fileID: 7862544477898018907}
   - {fileID: -6423400309425018534}
+  - {fileID: 7576540745885178242}
+  - {fileID: 9217309563041484641}
+  - {fileID: 3118034845985128138}
+  - {fileID: 7559191242573834279}
   EditorParameters: []
   MasterBanks:
   - {fileID: -4187431545303791905}
   StringsBanks:
   - {fileID: 7212003574836815941}
-  cacheTime: 637903941456259026
+  cacheTime: 637908319616523780
   cacheVersion: 131591
+--- !u!114 &3118034845985128138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Menu/ClickIn
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Menu/ClickIn
+  Guid:
+    Data1: -1367629250
+    Data2: 1134141614
+    Data3: 1564563597
+    Data4: -1752931759
+  Banks:
+  - {fileID: -4187431545303791905}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1636
 --- !u!114 &6553745440271509095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -324,7 +355,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 3291
 --- !u!114 &7115768101098949997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -367,11 +398,65 @@ MonoBehaviour:
   Path: Assets/Sounds/WireFrameFMOD project/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637903941456259026
+  lastModified: 637908319616523780
   FileSizes:
   - Name: Desktop
-    Value: 1464
+    Value: 1734
   Exists: 1
+--- !u!114 &7559191242573834279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Menu/Start
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Menu/Start
+  Guid:
+    Data1: -1176486952
+    Data2: 1123100696
+    Data3: 985149591
+    Data4: 872646
+  Banks:
+  - {fileID: -4187431545303791905}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1636
+--- !u!114 &7576540745885178242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Menu/ClickOut
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Menu/ClickOut
+  Guid:
+    Data1: 860339753
+    Data2: 1168268608
+    Data3: -420000883
+    Data4: -1043674513
+  Banks:
+  - {fileID: -4187431545303791905}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1636
 --- !u!114 &7862544477898018907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -398,4 +483,31 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 2045
+--- !u!114 &9217309563041484641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/PowerUps/Health
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/PowerUps/Health
+  Guid:
+    Data1: 1511422769
+    Data2: 1223590769
+    Data3: -751829592
+    Data4: -1697660958
+  Banks:
+  - {fileID: -4187431545303791905}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000

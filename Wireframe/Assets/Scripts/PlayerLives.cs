@@ -2,9 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using FMODUnity;
 
 public class PlayerLives : MonoBehaviour
 {
+    [SerializeField]
+    EventReference deathSFX;
+    [SerializeField]
+    EventReference damageSFX;
+    [SerializeField]
+    EventReference lifeSFX;
     public int startLives;
     [Header("References")]
     public GameObject lifeIconPrefab;
@@ -27,11 +34,13 @@ public class PlayerLives : MonoBehaviour
             if(PlayerMove.invinsibleTimer < 0)
             {
                 TakeDamage();
+                RuntimeManager.PlayOneShot(damageSFX);
             }
         }
         else if (other.transform.tag == "LifePickup")
         {
             CollectLife();
+            RuntimeManager.PlayOneShot(lifeSFX);
             Destroy(other.gameObject);
         }
     }
@@ -40,6 +49,7 @@ public class PlayerLives : MonoBehaviour
     {
         if(lives <= 0)
         {
+            RuntimeManager.PlayOneShot(deathSFX);
             Wreck();
             return;
         }

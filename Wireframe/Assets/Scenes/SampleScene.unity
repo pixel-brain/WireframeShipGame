@@ -11110,7 +11110,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 2.2502556, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -12511,7 +12511,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attenuationObject: {fileID: 0}
+  attenuationObject: {fileID: 963194225}
 --- !u!1 &975720305
 GameObject:
   m_ObjectHideFlags: 0
@@ -12615,7 +12615,6 @@ GameObject:
   - component: {fileID: 1016957018}
   - component: {fileID: 1016957020}
   - component: {fileID: 1016957019}
-  - component: {fileID: 1016957021}
   m_Layer: 0
   m_Name: Music_Visualizer
   m_TagString: Untagged
@@ -12685,18 +12684,6 @@ MonoBehaviour:
   - Master
   CollisionTag: 
   PreloadSamples: 0
---- !u!114 &1016957021
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1016957017}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65fa3688bc4818f478938896dbb67443, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1032273432
 GameObject:
   m_ObjectHideFlags: 0
@@ -19057,6 +19044,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7231c67d62c38ea44afd82a0dd7542bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathSFX:
+    Guid:
+      Data1: 1463711400
+      Data2: 1224831720
+      Data3: -441217364
+      Data4: 1647528204
+    Path: event:/SFX/Player/Death
+  damageSFX:
+    Guid:
+      Data1: 760469070
+      Data2: 1223050552
+      Data3: 119494811
+      Data4: 1288105981
+    Path: event:/SFX/Player/Damage
+  lifeSFX:
+    Guid:
+      Data1: 1511422769
+      Data2: 1223590769
+      Data3: -751829592
+      Data4: -1697660958
+    Path: event:/SFX/PowerUps/Health
   startLives: 3
   lifeIconPrefab: {fileID: 8628210598064263340, guid: 4dfc70c586a5daf47bc8fad8c5320ac0, type: 3}
   livesText: {fileID: 663823271}
@@ -24721,6 +24729,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c75e524596e7db240b787cebe1fb5b1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nearmissSFX:
+    Guid:
+      Data1: 1578269973
+      Data2: 1272380632
+      Data3: 1590013881
+      Data4: -1548352781
+    Path: event:/SFX/Player/NearMiss
   playerMoveScript: {fileID: 1345081330}
   target: {fileID: 1345081328}
   nearMissParticles: {fileID: 40476257}
