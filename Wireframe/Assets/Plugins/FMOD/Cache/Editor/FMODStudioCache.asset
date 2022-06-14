@@ -123,10 +123,10 @@ MonoBehaviour:
   Path: Assets/Sounds/WireFrameFMOD project/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637908319616451521
+  lastModified: 637908471882239433
   FileSizes:
   - Name: Desktop
-    Value: 4652576
+    Value: 4654304
   Exists: 1
 --- !u!114 &-3968562129278226725
 MonoBehaviour:
@@ -295,12 +295,14 @@ MonoBehaviour:
   - {fileID: 9217309563041484641}
   - {fileID: 3118034845985128138}
   - {fileID: 7559191242573834279}
+  - {fileID: 7519209016364012421}
+  - {fileID: 3886949944939929241}
   EditorParameters: []
   MasterBanks:
   - {fileID: -4187431545303791905}
   StringsBanks:
   - {fileID: 7212003574836815941}
-  cacheTime: 637908319616523780
+  cacheTime: 637908471882269673
   cacheVersion: 131591
 --- !u!114 &3118034845985128138
 MonoBehaviour:
@@ -320,6 +322,33 @@ MonoBehaviour:
     Data2: 1134141614
     Data3: 1564563597
     Data4: -1752931759
+  Banks:
+  - {fileID: -4187431545303791905}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1636
+--- !u!114 &3886949944939929241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/ClickIn
+  m_EditorClassIdentifier: 
+  Path: event:/ClickIn
+  Guid:
+    Data1: 952378802
+    Data2: 1247089897
+    Data3: -303843690
+    Data4: 1356617340
   Banks:
   - {fileID: -4187431545303791905}
   IsStream: 0
@@ -398,11 +427,38 @@ MonoBehaviour:
   Path: Assets/Sounds/WireFrameFMOD project/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637908319616523780
+  lastModified: 637908471882269673
   FileSizes:
   - Name: Desktop
     Value: 1734
   Exists: 1
+--- !u!114 &7519209016364012421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/ClickOut
+  m_EditorClassIdentifier: 
+  Path: event:/ClickOut
+  Guid:
+    Data1: 4046620
+    Data2: 1324976760
+    Data3: 557637297
+    Data4: 1654394146
+  Banks:
+  - {fileID: -4187431545303791905}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1636
 --- !u!114 &7559191242573834279
 MonoBehaviour:
   m_ObjectHideFlags: 0

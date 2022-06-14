@@ -5,10 +5,10 @@
 			<value>ClickOut</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>0</value>
 		</property>
 		<relationship name="folder">
-			<destination>{5ce9f20a-ac3f-4c42-90d0-5fd6c4f1598f}</destination>
+			<destination>{616ce08d-fe50-4989-8d84-705a979c27e5}</destination>
 		</relationship>
 		<relationship name="mixer">
 			<destination>{52eee704-b644-412b-bd27-e5ce8dc1fd29}</destination>
