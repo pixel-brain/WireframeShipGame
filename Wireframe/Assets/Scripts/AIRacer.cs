@@ -124,8 +124,6 @@ public class AIRacer : MonoBehaviour
         //Destroy if too far behind
         if(distFromPlayer < -250f)
         {
-            RaceAITrackerManager.playerPosition--;
-            aheadOfPlayer = false;
             Destroy(racerIcon);
             Destroy(gameObject);
         }

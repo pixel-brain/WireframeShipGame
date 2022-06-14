@@ -17,11 +17,15 @@ public class RaceAITrackerManager : MonoBehaviour
     public float xMaxSpawnOffset;
     [Header("Other Variables")]
     public float finishLineDist;
+    public float finishLineIconTop;
+    public float finishLineIconBottom;
+    public Transform finishLineIcon;
 
     public Transform player;
     public GameObject racerPrefab;
     public GameObject finishLinePrefab;
     public TextMeshProUGUI positionText;
+    public GameCompleteManager gameManagerScript;
 
     float timer;
     float randomHeadstartAmount;
@@ -52,7 +56,6 @@ public class RaceAITrackerManager : MonoBehaviour
                 randomHeadstartAmount = Random.Range(-randomMax/2f, randomMax);
                 racersSpawned++;
             }
-            timer += Time.deltaTime;
         }
         //Spawn Finish Line
         if(player.position.z > finishLineDist && spawnedFinish == false)
@@ -63,10 +66,15 @@ public class RaceAITrackerManager : MonoBehaviour
         //Player cross finish line
         if(player.position.z > finishLineDist + 800)
         {
-            Debug.Log("Finished!");
+            gameManagerScript.RaceOver();
+            player.gameObject.SetActive(false);
+            Destroy(gameObject);
         }
+        StatsTracker.averageSpeed = (int)(player.position.z / timer);
 
+        finishLineIcon.localPosition = new Vector3(finishLineIcon.localPosition.x, Mathf.Lerp(finishLineIconTop, finishLineIconBottom, player.position.z / (finishLineDist + 700)), finishLineIcon.localPosition.z);
 
         positionText.text = "" + playerPosition;
+        timer += Time.deltaTime;
     }
 }

@@ -1,27 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using TMPro;
 
 public class PlayerLives : MonoBehaviour
 {
     public int startLives;
-    public float livesIconOffset;
     [Header("References")]
     public GameObject lifeIconPrefab;
-    public Transform livesIconHolder;
+    public TextMeshProUGUI livesText;
     public PlayerMove playerMoveScript;
-    List<GameObject> lifeIcons = new List<GameObject>();
+    public GameCompleteManager gameManagerScript;
+    public GameObject wreckEffectPrefab;
+    int lives;
     // Start is called before the first frame update
     void Start()
     {
-        for(int i = 0; i < startLives; i++)
-        {
-            GameObject icon = Instantiate(lifeIconPrefab, livesIconHolder.position + new Vector3(i * livesIconOffset / 100f, 0, 0), Quaternion.identity);
-            icon.transform.SetParent(livesIconHolder);
-            icon.transform.localScale = Vector3.one;
-            lifeIcons.Add(icon);
-        }
+        lives = startLives;
+        livesText.text = "" + lives;
     }
 
     void OnTriggerEnter(Collider other)
@@ -42,22 +38,26 @@ public class PlayerLives : MonoBehaviour
 
     void TakeDamage()
     {
-        if(lifeIcons.Count == 0)
+        if(lives <= 0)
         {
-            SceneManager.LoadScene("SampleScene");
+            Wreck();
             return;
         }
         playerMoveScript.TakeDamage();
-
-        Destroy(lifeIcons[lifeIcons.Count - 1]);
-        lifeIcons.Remove(lifeIcons[lifeIcons.Count - 1]);
+        lives--;
+        livesText.text = "" + lives;
     }
 
     void CollectLife()
     {
-        GameObject icon = Instantiate(lifeIconPrefab, livesIconHolder.position + new Vector3(lifeIcons.Count * livesIconOffset / 100f, 0, 0), Quaternion.identity);
-        icon.transform.SetParent(livesIconHolder);
-        icon.transform.localScale = Vector3.one;
-        lifeIcons.Add(icon);
+        lives++;
+        livesText.text = "" + lives;
+    }
+
+    void Wreck()
+    {
+        gameManagerScript.GameOver();
+        Instantiate(wreckEffectPrefab, transform.position, Quaternion.identity);
+        gameObject.SetActive(false);
     }
 }

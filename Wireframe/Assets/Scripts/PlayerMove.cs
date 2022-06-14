@@ -28,6 +28,8 @@ public class PlayerMove : MonoBehaviour
     public AnimationCurve accelScaling;
     public AnimationCurve decelScaling;
     public AnimationCurve decelDelaying;
+    [Range(0f, 200f)]
+    public float startSpeed;
     [Range(0f, 110f)]
     public float forwardSpeed;
     [Range(0f, 500f)]
@@ -89,6 +91,7 @@ public class PlayerMove : MonoBehaviour
     public CameraShake camShakeScript;
     public CinemachineVirtualCamera vCam;
     public ParticleSystem speedLinesParticles;
+    public BoostMessager boostMessageScript;
     Animator anim;
 
 
@@ -109,7 +112,7 @@ public class PlayerMove : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         rigi = GetComponent<Rigidbody>();
-        rigi.velocity = new Vector3(0, 0, forwardSpeed);
+        rigi.velocity = new Vector3(0, 0, startSpeed);
     }
 
     void FixedUpdate()
@@ -154,10 +157,13 @@ public class PlayerMove : MonoBehaviour
         float targetFollowDistance = -Mathf.Lerp(minCamDist, maxCamDist, speedLerp);
 
         //Camera lag behind on boost
-        float initialBoostLerp = 1f - Mathf.Clamp((boostInitialTimer + camLagTime - forwardInitialAccelTime) / camLagTime, 0, 1);
-        offsetFollowDistance += camLag.Evaluate(initialBoostLerp) * camLagAmount;
-        offsetFollowDistance = Mathf.Clamp(offsetFollowDistance, 0f, 100f);
-        (componentBase as CinemachineFramingTransposer).m_TrackedObjectOffset.z = targetFollowDistance - offsetFollowDistance;
+        if(grounded)
+        {
+            float initialBoostLerp = 1f - Mathf.Clamp((boostInitialTimer + camLagTime - forwardInitialAccelTime) / camLagTime, 0, 1);
+            offsetFollowDistance += camLag.Evaluate(initialBoostLerp) * camLagAmount;
+            offsetFollowDistance = Mathf.Clamp(offsetFollowDistance, 0f, 100f);
+            (componentBase as CinemachineFramingTransposer).m_TrackedObjectOffset.z = targetFollowDistance - offsetFollowDistance;
+        }
 
         //SpeedLines
         var main = speedLinesParticles.main;
@@ -237,6 +243,12 @@ public class PlayerMove : MonoBehaviour
         speedGuageText.text = "" + Mathf.Round(zVel);
         //apply velocity
         rigi.velocity = new Vector3(xVel, rigi.velocity.y, zVel);
+        //update topSpeed
+        if(Mathf.Round(zVel) > StatsTracker.topSpeed)
+        {
+            StatsTracker.topSpeed = (int)Mathf.Round(zVel);
+        }
+
         if(grounded == true)
         {
             boostTimer -= Time.fixedDeltaTime;
@@ -271,18 +283,23 @@ public class PlayerMove : MonoBehaviour
         //Set NearMiss Boost Time
         boostTimer = Mathf.Clamp(boostTimer + nearMissBoostTime, nearMissBoostTime, 5000);
         boostInitialTimer = forwardInitialAccelTime;
+        StatsTracker.closeCalls++;
+        boostMessageScript.SpawnMessage("Close Call");
         //rigi.velocity = new Vector3(rigi.velocity.x, rigi.velocity.y, rigi.velocity.z + (nearMissInitialAccel * accelScaling.Evaluate(rigi.velocity.z)));
     }
 
     public void Ring()
     {
         boostTimer = Mathf.Clamp(boostTimer + ringBoostTime, ringBoostTime, 5000);
+        boostMessageScript.SpawnMessage("Ring");
     }
 
     void Takedown()
     {
         boostTimer = Mathf.Clamp(boostTimer + nearMissBoostTime, nearMissBoostTime, 5000);
         boostInitialTimer = forwardInitialAccelTime;
+        StatsTracker.takedowns++;
+        boostMessageScript.SpawnMessage("Takedown");
     }
 
     public void TakeDamage()
@@ -315,6 +332,7 @@ public class PlayerMove : MonoBehaviour
             boostInitialTimer = forwardInitialAccelTime;
             //rigi.velocity = new Vector3(rigi.velocity.x, rigi.velocity.y, rigi.velocity.z + (boostInitialAccel * accelScaling.Evaluate(rigi.velocity.z)));
             Destroy(other.gameObject);
+            boostMessageScript.SpawnMessage("Boost Pad");
         }
     }
 }

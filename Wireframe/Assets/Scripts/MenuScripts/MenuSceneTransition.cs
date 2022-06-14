@@ -27,6 +27,7 @@ public class MenuSceneTransition : MonoBehaviour
     IEnumerator WaitToChange()
     {
         confirmedStart = true;
+        Cursor.lockState = CursorLockMode.Locked;
         yield return new WaitForSeconds(4.88f);
         SceneManager.LoadScene("SampleScene");
     }

@@ -18,21 +18,23 @@ public class GroundScroll : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(playerPos.position.z > zOffset)
+        if(playerPos != null)
         {
-            zOffset += spacing;
-            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + spacing);
+            if (playerPos.position.z > zOffset)
+            {
+                zOffset += spacing;
+                transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + spacing);
+            }
+            if (playerPos.position.x > xOffset)
+            {
+                xOffset += spacing;
+                transform.position = new Vector3(transform.position.x + spacing, transform.position.y, transform.position.z);
+            }
+            else if (playerPos.position.x < xOffset - spacing)
+            {
+                xOffset -= spacing;
+                transform.position = new Vector3(transform.position.x - spacing, transform.position.y, transform.position.z);
+            }
         }
-        if(playerPos.position.x > xOffset)
-        {
-            xOffset += spacing;
-            transform.position = new Vector3(transform.position.x + spacing, transform.position.y, transform.position.z);
-        }
-        else if(playerPos.position.x < xOffset - spacing)
-        {
-            xOffset -= spacing;
-            transform.position = new Vector3(transform.position.x - spacing, transform.position.y, transform.position.z);
-        }
-
     }
 }
