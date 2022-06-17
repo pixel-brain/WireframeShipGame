@@ -9,10 +9,20 @@ public class GameCompleteManager : MonoBehaviour
     public StatsTracker statsTrackerScript;
     public GameObject gameCompleteScreen;
     public TextMeshProUGUI stateText;
+    public GameObject pauseScreen;
 
     void Start()
     {
+        Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Pause();
+        }
     }
 
     public void GameOver()
@@ -46,6 +56,20 @@ public class GameCompleteManager : MonoBehaviour
     public void MainMenu()
     {
         SceneManager.LoadScene("MainMenuScene");
+    }
+
+    void Pause()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        pauseScreen.SetActive(true);
+        Time.timeScale = 0f;
+    }
+
+    public void Resume()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        pauseScreen.SetActive(false);
+        Time.timeScale = 1f;
     }
 
 }

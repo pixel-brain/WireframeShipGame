@@ -13,6 +13,11 @@ public class MenuSceneTransition : MonoBehaviour
     public MenuCam menuCamManagerScript;
     bool confirmedStart;
 
+    void Start()
+    {
+        Time.timeScale = 1f;
+    }
+
     public void StartGame(int difficulty)
     {
         SettingsManager.difficulty = difficulty;
