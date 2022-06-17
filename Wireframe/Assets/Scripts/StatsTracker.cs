@@ -11,6 +11,7 @@ public class StatsTracker : MonoBehaviour
     public TextMeshProUGUI averageSpeedText;
     public TextMeshProUGUI closeCallsText;
     public TextMeshProUGUI takedownsText;
+    public TextMeshProUGUI difficultyText;
 
     public static int topSpeed;
     public static int averageSpeed;
@@ -33,5 +34,11 @@ public class StatsTracker : MonoBehaviour
         averageSpeedText.text = "" + averageSpeed;
         closeCallsText.text = "" + closeCalls;
         takedownsText.text = "" + takedowns;
+        if (SettingsManager.difficulty == 0)
+            difficultyText.text = "Novice";
+        else if (SettingsManager.difficulty == 1)
+            difficultyText.text = "Standard";
+        else if (SettingsManager.difficulty == 2)
+            difficultyText.text = "Expert";
     }
 }

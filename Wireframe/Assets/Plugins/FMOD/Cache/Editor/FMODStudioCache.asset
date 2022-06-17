@@ -123,7 +123,7 @@ MonoBehaviour:
   Path: Assets/Sounds/WireFrameFMOD project/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637908471882239433
+  lastModified: 637908268022314245
   FileSizes:
   - Name: Desktop
     Value: 4654304
@@ -302,7 +302,7 @@ MonoBehaviour:
   - {fileID: -4187431545303791905}
   StringsBanks:
   - {fileID: 7212003574836815941}
-  cacheTime: 637908471882269673
+  cacheTime: 637908268022973970
   cacheVersion: 131591
 --- !u!114 &3118034845985128138
 MonoBehaviour:
@@ -427,7 +427,7 @@ MonoBehaviour:
   Path: Assets/Sounds/WireFrameFMOD project/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637908471882269673
+  lastModified: 637908268022973970
   FileSizes:
   - Name: Desktop
     Value: 1734

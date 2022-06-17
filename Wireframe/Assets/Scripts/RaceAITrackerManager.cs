@@ -6,17 +6,17 @@ using TMPro;
 public class RaceAITrackerManager : MonoBehaviour
 {
     [Header("Racer Spawner Variables")]
-    public int numOfRacers;
+    int numOfRacers;
     public float minRacerHeadstart;
-    public float maxRacerHeadstart;
+    float maxRacerHeadstart;
     public float minRacerHeadstartRandomAmount;
     public float maxRacerHeadstartRandomAmount;
-    public float minRacerSpeed;
-    public float maxRacerSpeed;
+    float minRacerSpeed;
+    float maxRacerSpeed;
     public float zSpawnOffset;
     public float xMaxSpawnOffset;
     [Header("Other Variables")]
-    public float finishLineDist;
+    float finishLineDist;
     public float finishLineIconTop;
     public float finishLineIconBottom;
     public Transform finishLineIcon;
@@ -25,17 +25,31 @@ public class RaceAITrackerManager : MonoBehaviour
     public GameObject racerPrefab;
     public GameObject finishLinePrefab;
     public TextMeshProUGUI positionText;
+    public TextMeshProUGUI winTimerText;
     public GameCompleteManager gameManagerScript;
+    public Animator positionTextAnim;
 
     float timer;
     float randomHeadstartAmount;
     int racersSpawned;
     public static int playerPosition;
     bool spawnedFinish;
+    bool halfway;
+    float winTimer;
 
     // Start is called before the first frame update
     void Start()
     {
+        SettingsManager settings = GameObject.Find("SettingsManager").GetComponent<SettingsManager>();
+        int difficulty = SettingsManager.difficulty;
+        maxRacerHeadstart = settings.maxAIHeadstart[difficulty];
+        minRacerSpeed = settings.minAISpeed[difficulty];
+        maxRacerSpeed = settings.maxAISpeed[difficulty];
+        finishLineDist = settings.raceLength[difficulty];
+        numOfRacers = settings.racers[difficulty];
+
+
+
         playerPosition = numOfRacers + 1;
     }
 
@@ -63,6 +77,32 @@ public class RaceAITrackerManager : MonoBehaviour
             spawnedFinish = true;
             Instantiate(finishLinePrefab, new Vector3(player.position.x, 0, finishLineDist + 800), Quaternion.identity);
         }
+        //Player halfway
+        if(player.position.z > finishLineDist / 2f + 100 && halfway == false)
+        {
+            finishLineIcon.gameObject.GetComponent<Animator>().SetTrigger("Halfway");
+            halfway = true;
+        }
+
+        //Player remains in first for 10 seconds
+        if(playerPosition == 1)
+        {
+            winTimer -= Time.deltaTime;
+            winTimerText.text = "Win in " + (int)winTimer;
+            if(winTimer < 0.5f)
+            {
+                winTimerText.text = "Win in 0";
+                gameManagerScript.RaceOver();
+                player.gameObject.SetActive(false);
+                Destroy(gameObject);
+            }
+        }
+        else if(winTimer < 11)
+        {
+            winTimer = 11f;
+            winTimerText.text = "";
+        }
+
         //Player cross finish line
         if(player.position.z > finishLineDist + 800)
         {
@@ -70,11 +110,22 @@ public class RaceAITrackerManager : MonoBehaviour
             player.gameObject.SetActive(false);
             Destroy(gameObject);
         }
+
+        //Stats average speed
         StatsTracker.averageSpeed = (int)(player.position.z / timer);
 
         finishLineIcon.localPosition = new Vector3(finishLineIcon.localPosition.x, Mathf.Lerp(finishLineIconTop, finishLineIconBottom, player.position.z / (finishLineDist + 700)), finishLineIcon.localPosition.z);
 
-        positionText.text = "" + playerPosition;
+        int previousTextPos = int.Parse(positionText.text);
+        if (playerPosition != previousTextPos)
+        {
+            positionText.text = "" + playerPosition;
+            if(previousTextPos > playerPosition)
+            {
+                positionTextAnim.SetTrigger("Leap");
+            }
+        }
+
         timer += Time.deltaTime;
     }
 }

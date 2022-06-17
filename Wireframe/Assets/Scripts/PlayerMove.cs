@@ -83,6 +83,10 @@ public class PlayerMove : MonoBehaviour
     [Header("NearMiss Variables")]
     [Range(0f, 5f)]
     public float nearMissBoostTime;
+    public Vector3 nearMissStartPos;
+    public Vector3 nearMissStartScale;
+    public Vector3 nearMissEndPos;
+    public Vector3 nearMissEndScale;
 
     [Header("References")]
     public Transform model;
@@ -92,6 +96,9 @@ public class PlayerMove : MonoBehaviour
     public CinemachineVirtualCamera vCam;
     public ParticleSystem speedLinesParticles;
     public BoostMessager boostMessageScript;
+    public BoxCollider nearMissCheckCol;
+
+
     Animator anim;
 
 
@@ -248,8 +255,11 @@ public class PlayerMove : MonoBehaviour
         {
             StatsTracker.topSpeed = (int)Mathf.Round(zVel);
         }
+        //Update near miss collider
+        nearMissCheckCol.center = Vector3.Lerp(nearMissStartPos, nearMissEndPos, (zVel - forwardSpeed) / (maxForwardSpeed - forwardSpeed));
+        nearMissCheckCol.size = Vector3.Lerp(nearMissStartScale, nearMissEndScale, (zVel - forwardSpeed) / (maxForwardSpeed - forwardSpeed));
 
-        if(grounded == true)
+        if (grounded == true)
         {
             boostTimer -= Time.fixedDeltaTime;
             boostInitialTimer -= Time.fixedDeltaTime;

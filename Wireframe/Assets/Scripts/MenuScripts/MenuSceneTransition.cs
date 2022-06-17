@@ -10,12 +10,12 @@ public class MenuSceneTransition : MonoBehaviour
     [SerializeField]
     EventReference startsfx;
 
-
     public MenuCam menuCamManagerScript;
     bool confirmedStart;
 
-    public void StartGame()
+    public void StartGame(int difficulty)
     {
+        SettingsManager.difficulty = difficulty;
         menuCamManagerScript.enabled = false;
         GetComponent<PlayableDirector>().Play();
         if(confirmedStart == false)

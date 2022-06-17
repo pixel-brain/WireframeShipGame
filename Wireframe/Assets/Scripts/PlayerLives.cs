@@ -12,18 +12,18 @@ public class PlayerLives : MonoBehaviour
     EventReference damageSFX;
     [SerializeField]
     EventReference lifeSFX;
-    public int startLives;
     [Header("References")]
     public GameObject lifeIconPrefab;
     public TextMeshProUGUI livesText;
     public PlayerMove playerMoveScript;
     public GameCompleteManager gameManagerScript;
     public GameObject wreckEffectPrefab;
+    public Animator countTextAnim;
     int lives;
     // Start is called before the first frame update
     void Start()
     {
-        lives = startLives;
+        lives = GameObject.Find("SettingsManager").GetComponent<SettingsManager>().lives[SettingsManager.difficulty];
         livesText.text = "" + lives;
     }
 
@@ -47,6 +47,7 @@ public class PlayerLives : MonoBehaviour
 
     void TakeDamage()
     {
+        countTextAnim.SetTrigger("Loss");
         if(lives <= 0)
         {
             RuntimeManager.PlayOneShot(deathSFX);
