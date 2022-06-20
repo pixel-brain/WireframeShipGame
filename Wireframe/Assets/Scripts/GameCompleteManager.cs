@@ -13,7 +13,7 @@ public class GameCompleteManager : MonoBehaviour
 
     void Start()
     {
-        Time.timeScale = 1f;
+        Time.timeScale = SettingsManager.gameSpeed;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -69,7 +69,7 @@ public class GameCompleteManager : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         pauseScreen.SetActive(false);
-        Time.timeScale = 1f;
+        Time.timeScale = SettingsManager.gameSpeed;
     }
 
 }

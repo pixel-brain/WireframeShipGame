@@ -27,11 +27,12 @@ public class SettingsManager : MonoBehaviour
 
     public static int difficulty;
     public static bool created;
+    public static float gameSpeed;
 
     int colorScheme;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if (created)
         {
@@ -39,17 +40,9 @@ public class SettingsManager : MonoBehaviour
         }
         else
         {
+            gameSpeed = 1.1f;
             created = true;
             DontDestroyOnLoad(gameObject);
-        }
-    }
-
-    void Update()
-    {
-        //REMOVE THIS
-        if (Input.GetButtonDown("Jump"))
-        {
-            ChangeColor();
         }
     }
 
@@ -61,10 +54,15 @@ public class SettingsManager : MonoBehaviour
             colorScheme = 0;
         }
         baseMat.SetColor("_BaseColor", baseColor[colorScheme]);
-        glowMat.SetColor("_EmissionColor", glowColor[colorScheme] * 4f);
+        glowMat.SetColor("_EmissionColor", glowColor[colorScheme] * 4.5f);
         sunMat.SetColor("_EmissionColor", sunColor[colorScheme] * 2.1f);
-        floorMat.SetColor("GridColor", glowColor[colorScheme] * 7f);
+        floorMat.SetColor("GridColor", glowColor[colorScheme] * 10f);
         skyMat.SetColor("Color1", skyColor1[colorScheme]);
         skyMat.SetColor("Color2", skyColor2[colorScheme]);
+    }
+
+    public void ChangeGameSpeed()
+    {
+        gameSpeed = 1f;
     }
 }
