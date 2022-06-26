@@ -25,17 +25,16 @@ public class RaceAITrackerManager : MonoBehaviour
     public GameObject racerPrefab;
     public GameObject finishLinePrefab;
     public TextMeshProUGUI positionText;
-    public TextMeshProUGUI winTimerText;
     public GameCompleteManager gameManagerScript;
     public Animator positionTextAnim;
 
     float timer;
+    float winTimer;
     float randomHeadstartAmount;
     int racersSpawned;
     public static int playerPosition;
     bool spawnedFinish;
     bool halfway;
-    float winTimer;
 
     // Start is called before the first frame update
     void Start()
@@ -84,23 +83,19 @@ public class RaceAITrackerManager : MonoBehaviour
             halfway = true;
         }
 
-        //Player remains in first for 10 seconds
+        //Player remains in first for time
         if(playerPosition == 1)
         {
             winTimer -= Time.deltaTime;
-            winTimerText.text = "Win in " + (int)winTimer;
-            if(winTimer < 0.5f)
+            if(winTimer < 0 && finishLineDist > player.position.z + 100f)
             {
-                winTimerText.text = "Win in 0";
-                gameManagerScript.RaceOver();
-                player.gameObject.SetActive(false);
-                Destroy(gameObject);
+                halfway = true;
+                finishLineDist = player.position.z + 100f;
             }
         }
-        else if(winTimer < 11)
+        else
         {
-            winTimer = 11f;
-            winTimerText.text = "";
+            winTimer = 7f;
         }
 
         //Player cross finish line

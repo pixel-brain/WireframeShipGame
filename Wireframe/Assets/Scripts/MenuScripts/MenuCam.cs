@@ -26,6 +26,16 @@ public class MenuCam : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        var x = Input.GetAxisRaw("Mouse X");
+        /*
+        if (Application.platform == RuntimePlatform.WebGLPlayer)
+        {
+            x = DampenedMovement(x);
+        }
+        */
+        x *= sensitivity; 
+
         if (centered)
         {
             cursor.gameObject.SetActive(true);
@@ -34,8 +44,7 @@ public class MenuCam : MonoBehaviour
             transform.position = lerpedPos;
 
             //Rotate camera when in center
-            float mouseMove = Input.GetAxis("Mouse X") * sensitivity;
-            yRot += mouseMove;
+            yRot += x;
             yRot = Mathf.Clamp(yRot, -maxRotation, maxRotation);
             
 
@@ -72,6 +81,14 @@ public class MenuCam : MonoBehaviour
 
     }
 
+    float DampenedMovement(float value)
+    {
 
+        if (Mathf.Abs(value) > 1f)
+        {
+            return Mathf.Lerp(value, Mathf.Sign(value), 0.5f);
+        }
+        return value * 0.5f;
+    }
 
 }

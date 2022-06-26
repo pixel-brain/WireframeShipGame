@@ -765,14 +765,14 @@ MonoBehaviour:
   - 62
   - 68
   maxAISpeed:
-  - 88
+  - 86
   - 102
   - 130
   raceLength:
-  - 20000
-  - 19500
-  - 19000
-  boostSpawnDist: 2d0000003e00000055000000
+  - 18500
+  - 18500
+  - 18000
+  boostSpawnDist: 290000003a0000004e000000
   baseColor:
   - {r: 1, g: 0, b: 0.8666667, a: 1}
   - {r: 0.50980395, g: 0, b: 0.7372549, a: 1}
@@ -7000,7 +7000,7 @@ MonoBehaviour:
   - {fileID: 8949477}
   cameraOffset: 11
   cameraMoveLerpSpeed: 0.12
-  sensitivity: 3
+  sensitivity: 2.8
   maxRotation: 90
 --- !u!95 &813656734
 Animator:
@@ -14324,7 +14324,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'CONTROLS: A D or <-  ->
+  m_text: 'CONTROLS: A D or <- ->, ''p'' to pause
 
     GOAL: Pass all 98 opponents.
 
