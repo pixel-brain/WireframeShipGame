@@ -11335,7 +11335,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 2.1295938, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -14786,6 +14786,7 @@ GameObject:
   - component: {fileID: 1345081330}
   - component: {fileID: 1345081326}
   - component: {fileID: 1345081327}
+  - component: {fileID: 1345081331}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -15110,6 +15111,38 @@ MonoBehaviour:
   boostTimer: 0
   boostInitialTimer: 0
   rigi: {fileID: 0}
+--- !u!114 &1345081331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1345081324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1033533489
+      Data2: 1328061513
+      Data3: 923657889
+      Data4: 488526986
+    Path: event:/SFX/Player/Engine/Engine
+  Event: 
+  PlayEvent: 1
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params:
+  - Name: Speed
+    Value: 69
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &1357073303
 GameObject:
   m_ObjectHideFlags: 0

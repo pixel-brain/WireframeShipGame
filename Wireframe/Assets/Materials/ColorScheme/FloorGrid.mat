@@ -151,7 +151,7 @@ Material:
     m_Colors:
     - BaseColor: {r: 0.039215688, g: 0.039215688, b: 0.039215688, a: 1}
     - EmissionColor: {r: 0, g: 4.8143015, b: 19.037523, a: 1}
-    - GridColor: {r: 0.15706778, g: 0.50788397, b: 10, a: 10}
+    - GridColor: {r: 10, g: 9.761946, b: 0.15706778, a: 10}
     - Tiling: {r: 192, g: 64, b: 0, a: 0}
     - _BASE_COLOR: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}

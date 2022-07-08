@@ -1,9 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
 
 public class AIRacer : MonoBehaviour
 {
+    [SerializeField]
+    EventReference enemydeathSFX;
+    [SerializeField]
+    EventReference enemyboostSFX;
+    [SerializeField]
+    EventReference enemyrampSFX;
     [Header("AI Variables")]
     public float activateCollisionDist;
     public float forwardRaycastOffset;
@@ -268,7 +275,8 @@ public class AIRacer : MonoBehaviour
 
     public void Wreck()
     {
-        if(aheadOfPlayer == true)
+        RuntimeManager.PlayOneShot(enemydeathSFX, gameObject.transform.position);
+        if (aheadOfPlayer == true)
         {
             RaceAITrackerManager.playerPosition--;
             aheadOfPlayer = false;
@@ -302,6 +310,8 @@ public class AIRacer : MonoBehaviour
         if (other.transform.tag == "Ramp")
         {
             rigi.velocity = new Vector3(rigi.velocity.x, rampLaunchSpeed, rigi.velocity.z);
+            RuntimeManager.PlayOneShot(enemyrampSFX, gameObject.transform.position);
+
         }
         else if (other.transform.tag == "Boost")
         {
@@ -310,6 +320,7 @@ public class AIRacer : MonoBehaviour
             boostInitialTimer = forwardInitialAccelTime;
             //rigi.velocity = new Vector3(rigi.velocity.x, rigi.velocity.y, rigi.velocity.z + (boostInitialAccel * accelScaling.Evaluate(rigi.velocity.z)));
             Destroy(other.gameObject);
+            RuntimeManager.PlayOneShot(enemyboostSFX, gameObject.transform.position);
         }
     }
 }

@@ -5174,6 +5174,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bec9b368e1926ad439a8d127009ab81e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemydeathSFX:
+    Guid:
+      Data1: -332862905
+      Data2: 1262824943
+      Data3: -1142750324
+      Data4: 1190132035
+    Path: event:/SFX/EnemyDeath
+  enemyboostSFX:
+    Guid:
+      Data1: 107563011
+      Data2: 1160923018
+      Data3: 281652624
+      Data4: 110448382
+    Path: event:/SFX/EnemyBoost
+  enemyrampSFX:
+    Guid:
+      Data1: 1920671218
+      Data2: 1289695888
+      Data3: -598689118
+      Data4: 1574917696
+    Path: event:/SFX/EnemyRamp
   activateCollisionDist: 115
   forwardRaycastOffset: 1.33
   raycastLength: 200

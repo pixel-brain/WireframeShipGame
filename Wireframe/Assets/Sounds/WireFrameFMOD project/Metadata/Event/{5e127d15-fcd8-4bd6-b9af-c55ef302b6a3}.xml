@@ -56,7 +56,11 @@
 			<destination>{36a1145b-4fa3-4377-81b8-060b0317f5bc}</destination>
 		</relationship>
 	</object>
-	<object class="EventAutomatableProperties" id="{4fd1e438-79de-4473-afca-9db14ef32acf}" />
+	<object class="EventAutomatableProperties" id="{4fd1e438-79de-4473-afca-9db14ef32acf}">
+		<property name="dopplerEnabled">
+			<value>true</value>
+		</property>
+	</object>
 	<object class="MarkerTrack" id="{b945d131-ef83-4484-84bb-d3e03242736c}" />
 	<object class="GroupTrack" id="{ddb06a54-cdbb-40e8-b02b-f7993b1b176e}">
 		<relationship name="modules">
@@ -89,6 +93,9 @@
 	</object>
 	<object class="MixerBusPanner" id="{9f380440-b292-4fea-ba93-085b98ebbed6}" />
 	<object class="SingleSound" id="{90bb8ce1-bc79-45f5-b7f3-aab8e22bfc18}">
+		<property name="triggerConditionMode">
+			<value>1</value>
+		</property>
 		<property name="length">
 			<value>0.40918749999999998</value>
 		</property>
@@ -118,8 +125,10 @@
 	</object>
 	<object class="MixerBusEffectChain" id="{d3575005-1a02-4c67-8a3c-969cdc6a24bc}">
 		<relationship name="effects">
+			<destination>{0e3c58f7-bad2-4d64-8d20-c938e276dfd0}</destination>
 			<destination>{ddd41af9-5281-461f-8f05-89dfb54460fb}</destination>
 			<destination>{a05cd3d2-556d-48fa-ad65-29b9b6cd85d9}</destination>
+			<destination>{bbd21e60-054b-4671-b95a-8d8c1e76bca4}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{caa9bfe0-d2ba-4a7b-b3d3-08d7f3646ca4}" />
@@ -129,7 +138,7 @@
 			<value>pitch</value>
 		</property>
 		<property name="amount">
-			<value>26</value>
+			<value>14</value>
 		</property>
 	</object>
 	<object class="MixerBusEffectChain" id="{1e218b32-5c3f-4d82-a733-79c473dba568}">
@@ -139,8 +148,24 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{9681c003-22e2-4f0a-aaea-60a6cbd5112b}" />
+	<object class="SFXReverbEffect" id="{0e3c58f7-bad2-4d64-8d20-c938e276dfd0}">
+		<property name="decayTime">
+			<value>2100</value>
+		</property>
+		<property name="wetLevel">
+			<value>-20</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{ddd41af9-5281-461f-8f05-89dfb54460fb}" />
 	<object class="SpatialiserEffect" id="{a05cd3d2-556d-48fa-ad65-29b9b6cd85d9}" />
+	<object class="ChorusEffect" id="{bbd21e60-054b-4671-b95a-8d8c1e76bca4}">
+		<property name="rate">
+			<value>3.60000014</value>
+		</property>
+		<property name="depth">
+			<value>65.5</value>
+		</property>
+	</object>
 	<object class="MultibandEqEffect" id="{8b30cb69-6f80-49a3-9ff8-ea1fd161f2cb}">
 		<property name="filterTypeA">
 			<value>2</value>

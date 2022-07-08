@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 public class BoostTrail : MonoBehaviour
-{
+{ 
     public float offsetFromPlayer;
     public float checkObstaclesWidth;
     public Transform trail;

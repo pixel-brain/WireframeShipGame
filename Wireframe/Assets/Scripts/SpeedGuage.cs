@@ -28,6 +28,7 @@ public class SpeedGuage : MonoBehaviour
             p.transform.localScale = Vector3.one * size;
             rotation -= spacing;
         }
+;
     }
 
     void FixedUpdate()

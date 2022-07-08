@@ -123,10 +123,10 @@ MonoBehaviour:
   Path: Assets/Sounds/WireFrameFMOD project/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637908268022314245
+  lastModified: 637929050552403802
   FileSizes:
   - Name: Desktop
-    Value: 4654304
+    Value: 4657824
   Exists: 1
 --- !u!114 &-3968562129278226725
 MonoBehaviour:
@@ -232,7 +232,8 @@ MonoBehaviour:
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
-  Parameters: []
+  Parameters:
+  - {fileID: 961731402408815788}
   MinDistance: 1
   MaxDistance: 20
   Length: 14066
@@ -295,15 +296,40 @@ MonoBehaviour:
   - {fileID: 9217309563041484641}
   - {fileID: 3118034845985128138}
   - {fileID: 7559191242573834279}
-  - {fileID: 7519209016364012421}
-  - {fileID: 3886949944939929241}
+  - {fileID: 3669477752301818627}
+  - {fileID: 7202103306149784071}
+  - {fileID: 3520873583072903523}
   EditorParameters: []
   MasterBanks:
   - {fileID: -4187431545303791905}
   StringsBanks:
   - {fileID: 7212003574836815941}
-  cacheTime: 637908268022973970
+  cacheTime: 637929050552423745
   cacheVersion: 131591
+--- !u!114 &961731402408815788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Engine/Speed
+  m_EditorClassIdentifier: 
+  Name: Speed
+  StudioPath: 
+  Min: 0
+  Max: 200
+  Default: 0
+  ID:
+    data1: 4148415870
+    data2: 225816358
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &3118034845985128138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,7 +357,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1636
---- !u!114 &3886949944939929241
+--- !u!114 &3520873583072903523
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -341,23 +367,50 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/ClickIn
+  m_Name: event:/SFX/EnemyRamp
   m_EditorClassIdentifier: 
-  Path: event:/ClickIn
+  Path: event:/SFX/EnemyRamp
   Guid:
-    Data1: 952378802
-    Data2: 1247089897
-    Data3: -303843690
-    Data4: 1356617340
+    Data1: 1920671218
+    Data2: 1289695888
+    Data3: -598689118
+    Data4: 1574917696
   Banks:
   - {fileID: -4187431545303791905}
   IsStream: 0
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 1636
+  Length: 2156
+--- !u!114 &3669477752301818627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/EnemyDeath
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/EnemyDeath
+  Guid:
+    Data1: -332862905
+    Data2: 1262824943
+    Data3: -1142750324
+    Data4: 1190132035
+  Banks:
+  - {fileID: -4187431545303791905}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2045
 --- !u!114 &6553745440271509095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -412,6 +465,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 6642
+--- !u!114 &7202103306149784071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/EnemyBoost
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/EnemyBoost
+  Guid:
+    Data1: 107563011
+    Data2: 1160923018
+    Data3: 281652624
+    Data4: 110448382
+  Banks:
+  - {fileID: -4187431545303791905}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 550
+  Length: 3535
 --- !u!114 &7212003574836815941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -427,38 +507,11 @@ MonoBehaviour:
   Path: Assets/Sounds/WireFrameFMOD project/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637908268022973970
+  lastModified: 637929050552423745
   FileSizes:
   - Name: Desktop
-    Value: 1734
+    Value: 1820
   Exists: 1
---- !u!114 &7519209016364012421
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/ClickOut
-  m_EditorClassIdentifier: 
-  Path: event:/ClickOut
-  Guid:
-    Data1: 4046620
-    Data2: 1324976760
-    Data3: 557637297
-    Data4: 1654394146
-  Banks:
-  - {fileID: -4187431545303791905}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1636
 --- !u!114 &7559191242573834279
 MonoBehaviour:
   m_ObjectHideFlags: 0
