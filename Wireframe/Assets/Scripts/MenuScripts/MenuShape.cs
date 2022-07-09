@@ -11,6 +11,7 @@ public class MenuShape : MonoBehaviour
     {
         titleText.SetActive(false);
         menu.SetActive(true);
+        Screen.lockCursor = false;
         Cursor.lockState = CursorLockMode.None;
     }
 
@@ -18,7 +19,8 @@ public class MenuShape : MonoBehaviour
     {
         titleText.SetActive(true);
         menu.SetActive(false);
-        Cursor.lockState = CursorLockMode.Locked;
+        Screen.lockCursor = true;
         MenuCam.centered = true;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 }

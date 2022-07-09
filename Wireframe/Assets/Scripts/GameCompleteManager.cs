@@ -14,6 +14,7 @@ public class GameCompleteManager : MonoBehaviour
     void Start()
     {
         Time.timeScale = SettingsManager.gameSpeed;
+        Screen.lockCursor = true;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -27,6 +28,7 @@ public class GameCompleteManager : MonoBehaviour
 
     public void GameOver()
     {
+        Screen.lockCursor = false;
         Cursor.lockState = CursorLockMode.None;
         stateText.text = "WRECKED";
         statsTrackerScript.UpdateStatsText();
@@ -35,6 +37,7 @@ public class GameCompleteManager : MonoBehaviour
 
     public void RaceOver()
     {
+        Screen.lockCursor = false;
         Cursor.lockState = CursorLockMode.None;
         if (RaceAITrackerManager.playerPosition <= 1)
         {
@@ -60,6 +63,7 @@ public class GameCompleteManager : MonoBehaviour
 
     void Pause()
     {
+        Screen.lockCursor = false;
         Cursor.lockState = CursorLockMode.None;
         pauseScreen.SetActive(true);
         Time.timeScale = 0f;
@@ -67,6 +71,7 @@ public class GameCompleteManager : MonoBehaviour
 
     public void Resume()
     {
+        Screen.lockCursor = true;
         Cursor.lockState = CursorLockMode.Locked;
         pauseScreen.SetActive(false);
         Time.timeScale = SettingsManager.gameSpeed;

@@ -31,13 +31,17 @@ public class MenuSceneTransition : MonoBehaviour
 
     public void ExitGame()
     {
-        Application.Quit();
+        if(!(Application.platform == RuntimePlatform.WebGLPlayer))
+        {
+            Application.Quit();
+        }
     }
 
     IEnumerator WaitToChange()
     {
         confirmedStart = true;
         RuntimeManager.PlayOneShot(startsfx);
+        Screen.lockCursor = true;
         Cursor.lockState = CursorLockMode.Locked;
         yield return new WaitForSeconds(4.88f);
         SceneManager.LoadScene("SampleScene");

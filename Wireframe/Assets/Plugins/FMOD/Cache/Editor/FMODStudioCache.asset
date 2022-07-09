@@ -27,6 +27,60 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 409
+--- !u!114 &-8276177566610445923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/EnemyBoost
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/EnemyBoost
+  Guid:
+    Data1: 107563011
+    Data2: 1160923018
+    Data3: 281652624
+    Data4: 110448382
+  Banks:
+  - {fileID: -4187431545303791905}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 550
+  Length: 3535
+--- !u!114 &-7484754792608824287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/EnemyDeath
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/EnemyDeath
+  Guid:
+    Data1: -332862905
+    Data2: 1262824943
+    Data3: -1142750324
+    Data4: 1190132035
+  Banks:
+  - {fileID: -4187431545303791905}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2045
 --- !u!114 &-6423400309425018534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,7 +177,7 @@ MonoBehaviour:
   Path: Assets/Sounds/WireFrameFMOD project/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637929050552403802
+  lastModified: 637928849502021097
   FileSizes:
   - Name: Desktop
     Value: 4657824
@@ -233,7 +287,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 961731402408815788}
+  - {fileID: 2514725105630060126}
   MinDistance: 1
   MaxDistance: 20
   Length: 14066
@@ -296,17 +350,17 @@ MonoBehaviour:
   - {fileID: 9217309563041484641}
   - {fileID: 3118034845985128138}
   - {fileID: 7559191242573834279}
-  - {fileID: 3669477752301818627}
-  - {fileID: 7202103306149784071}
-  - {fileID: 3520873583072903523}
+  - {fileID: -8276177566610445923}
+  - {fileID: -7484754792608824287}
+  - {fileID: 4959641708158970072}
   EditorParameters: []
   MasterBanks:
   - {fileID: -4187431545303791905}
   StringsBanks:
   - {fileID: 7212003574836815941}
-  cacheTime: 637929050552423745
+  cacheTime: 637928849502529757
   cacheVersion: 131591
---- !u!114 &961731402408815788
+--- !u!114 &2514725105630060126
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -357,7 +411,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1636
---- !u!114 &3520873583072903523
+--- !u!114 &4959641708158970072
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -384,33 +438,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2156
---- !u!114 &3669477752301818627
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/EnemyDeath
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/EnemyDeath
-  Guid:
-    Data1: -332862905
-    Data2: 1262824943
-    Data3: -1142750324
-    Data4: 1190132035
-  Banks:
-  - {fileID: -4187431545303791905}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2045
 --- !u!114 &6553745440271509095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -465,33 +492,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 6642
---- !u!114 &7202103306149784071
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/EnemyBoost
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/EnemyBoost
-  Guid:
-    Data1: 107563011
-    Data2: 1160923018
-    Data3: 281652624
-    Data4: 110448382
-  Banks:
-  - {fileID: -4187431545303791905}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 550
-  Length: 3535
 --- !u!114 &7212003574836815941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -507,7 +507,7 @@ MonoBehaviour:
   Path: Assets/Sounds/WireFrameFMOD project/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637929050552423745
+  lastModified: 637928849502529757
   FileSizes:
   - Name: Desktop
     Value: 1820

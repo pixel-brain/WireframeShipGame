@@ -20,7 +20,8 @@ public class MenuCam : MonoBehaviour
     void Start()
     {
         centered = true;
-        Cursor.lockState = CursorLockMode.Locked;
+        Screen.lockCursor = false;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     // Update is called once per frame
@@ -28,12 +29,12 @@ public class MenuCam : MonoBehaviour
     {
 
         var x = Input.GetAxisRaw("Mouse X");
-        /*
+        
         if (Application.platform == RuntimePlatform.WebGLPlayer)
         {
-            x = DampenedMovement(x);
+            x *= 0.9f;
         }
-        */
+        
         x *= sensitivity; 
 
         if (centered)
@@ -44,12 +45,15 @@ public class MenuCam : MonoBehaviour
             transform.position = lerpedPos;
 
             //Rotate camera when in center
-            yRot += x;
-            yRot = Mathf.Clamp(yRot, -maxRotation, maxRotation);
+            if (SettingsManager.setPerformance == true)
+            {
+                yRot += x;
+                yRot = Mathf.Clamp(yRot, -maxRotation, maxRotation);
+                transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.x, yRot, transform.rotation.z));
+            }
             
 
 
-            transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.x, yRot, transform.rotation.z));
 
             //hover cursor over nearest box
             int nearestIndex = (int)((112 + yRot) / 45);
@@ -71,7 +75,7 @@ public class MenuCam : MonoBehaviour
         }
 
         //If player selects box
-        if (Input.GetButtonDown("MenuSelect"))
+        if (Input.GetButtonDown("MenuSelect") && SettingsManager.setPerformance == true)
         {
             centered = false;
             targetPos = new Vector3(menuShapes[currentIndex].transform.position.x, 4.33f, menuShapes[currentIndex].transform.position.z) + menuShapes[currentIndex].transform.up * cameraOffset;
@@ -79,16 +83,6 @@ public class MenuCam : MonoBehaviour
             cursor.gameObject.SetActive(false);
         }
 
-    }
-
-    float DampenedMovement(float value)
-    {
-
-        if (Mathf.Abs(value) > 1f)
-        {
-            return Mathf.Lerp(value, Mathf.Sign(value), 0.5f);
-        }
-        return value * 0.5f;
     }
 
 }

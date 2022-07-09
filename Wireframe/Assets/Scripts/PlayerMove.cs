@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Cinemachine;
+using FMODUnity;
 
 public class PlayerMove : MonoBehaviour
 {
+    [SerializeField]
+    EventReference boostOnLandSFX;
+
     [Header("Effects Variables")]
     public float minFOV;
     public float maxFOV;
@@ -276,8 +280,8 @@ public class PlayerMove : MonoBehaviour
                 anim.SetTrigger("Land");
                 if(boostTimer >= ringBoostTime)
                 {
+                    RuntimeManager.PlayOneShot(boostOnLandSFX);
                     boostInitialTimer = forwardInitialAccelTime;
-                    //rigi.velocity = new Vector3(rigi.velocity.x, rigi.velocity.y, rigi.velocity.z + (ringInitialAccel * accelScaling.Evaluate(rigi.velocity.z)));
                 }
             }
             grounded = true;

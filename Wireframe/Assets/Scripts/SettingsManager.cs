@@ -28,6 +28,8 @@ public class SettingsManager : MonoBehaviour
     public static int difficulty;
     public static bool created;
     public static float gameSpeed;
+    public static bool qualityMode;
+    public static bool setPerformance;
 
     int colorScheme;
 
@@ -65,4 +67,5 @@ public class SettingsManager : MonoBehaviour
     {
         gameSpeed = 1f;
     }
+
 }
